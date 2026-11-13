@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f5f9">
+  <title>等级跃升挑战赛 · 平台活动</title>
+  <style>
+    html, body { min-height: 100%; margin: 0; }
+    body { background: #f3f5f9; font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; }
+    .viz-dotted-background { min-height: 100vh; padding: 18px 0; background-color: #f3f5f9; background-image: radial-gradient(#cdd2df 0.65px, transparent 0.65px); background-size: 16px 16px; }
+    @media (max-width: 460px) { .viz-dotted-background { padding: 0; } #level-challenge-h5 .phone-shell { border-radius: 0; min-height: 100vh; } }
+  </style>
+</head>
+<body><div id="level-challenge-h5" class="viz-dotted-background">
+  <style>
+    #level-challenge-h5 {
+      color-scheme: light dark;
+      --h-bg: light-dark(#f3f5f9, #11151c);
+      --h-surface: light-dark(#ffffff, #1b212b);
+      --h-soft: light-dark(#f7f8fb, #232a35);
+      --h-text: light-dark(#171c26, #f1f3f8);
+      --h-muted: light-dark(#717b8c, #9ea8b8);
+      --h-border: light-dark(#e8ebf1, #303945);
+      --h-purple: #7162ef;
+      --h-purple-soft: light-dark(#f0efff, #302d4c);
+      --h-green: light-dark(#12845b, #52d09a);
+      --h-green-soft: light-dark(#e9f7f0, #213a30);
+      --h-red: light-dark(#d34450, #ff747d);
+      --h-amber: light-dark(#ad6716, #efb35f);
+      width: 100%;
+      padding: 20px 12px;
+      color: var(--h-text);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    #level-challenge-h5 * { box-sizing: border-box; }
+    #level-challenge-h5 button { font: inherit; }
+    #level-challenge-h5 .phone-shell {
+      width: 100%; max-width: 420px; margin: 0 auto; overflow: hidden;
+      border: 1px solid var(--h-border); border-radius: 26px;
+      color: var(--h-text); background: var(--h-bg);
+      box-shadow: 0 18px 52px #1419271a;
+    }
+    #level-challenge-h5 .screen { min-height: 680px; padding: 18px 16px 24px; }
+    #level-challenge-h5 .screen[hidden] { display: none; }
+    #level-challenge-h5 .topline, #level-challenge-h5 .home-brand,
+    #level-challenge-h5 .mobile-nav, #level-challenge-h5 .mobile-nav-title,
+    #level-challenge-h5 .entry-heading, #level-challenge-h5 .entry-date,
+    #level-challenge-h5 .section-heading, #level-challenge-h5 .row-title-line,
+    #level-challenge-h5 .row-meta, #level-challenge-h5 .challenge-summary,
+    #level-challenge-h5 .challenge-dates, #level-challenge-h5 .history-state,
+    #level-challenge-h5 .toast {
+      display: flex; align-items: center;
+    }
+    #level-challenge-h5 .topline { justify-content: space-between; gap: 10px; margin-bottom: 21px; }
+    #level-challenge-h5 .home-brand { gap: 10px; min-width: 0; }
+    #level-challenge-h5 .brand-mark {
+      display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center;
+      border-radius: 13px; color: #fff; background: linear-gradient(145deg,#887aff,#5548d7);
+      box-shadow: 0 5px 15px #7162ef38; font-size: 15px; font-weight: 700;
+    }
+    #level-challenge-h5 .brand-copy { min-width: 0; }
+    #level-challenge-h5 .brand-copy strong { display: block; font-size: 14px; font-weight: 680; }
+    #level-challenge-h5 .brand-copy small { display: block; margin-top: 3px; color: var(--h-muted); font-size: 10px; }
+    #level-challenge-h5 .wallet-mini {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 31px; padding: 0 9px;
+      border: 1px solid var(--h-border); border-radius: 999px; color: var(--h-muted);
+      background: var(--h-surface); font-size: 10px; white-space: nowrap;
+    }
+    #level-challenge-h5 .wallet-dot { width: 6px; height: 6px; border-radius: 50%; background: #36b982; }
+    #level-challenge-h5 .home-hero {
+      position: relative; overflow: hidden; padding: 21px 19px 20px; border-radius: 20px;
+      color: #f5f4ff; background: linear-gradient(130deg,#171b2c,#282555 58%,#4c3888);
+    }
+    #level-challenge-h5 .home-hero::after {
+      position: absolute; right: -49px; top: -65px; width: 175px; height: 175px;
+      border: 1px solid #ffffff20; border-radius: 50%; box-shadow: 0 0 0 22px #ffffff08,0 0 0 47px #ffffff05;
+      content: ""; pointer-events: none;
+    }
+    #level-challenge-h5 .hero-kicker { display: flex; align-items: center; gap: 7px; color: #cecbff; font-size: 10px; letter-spacing: .13em; }
+    #level-challenge-h5 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #54d99b; box-shadow: 0 0 8px #54d99b88; }
+    #level-challenge-h5 .home-hero h1 { max-width: 270px; margin: 13px 0 7px; font-size: 24px; line-height: 1.2; font-weight: 700; letter-spacing: -.03em; }
+    #level-challenge-h5 .home-hero p { margin: 0; color: #c2c3d1; font-size: 11px; line-height: 1.6; }
+    #level-challenge-h5 .home-date { margin-top: 14px; color: #e7d49f; font-size: 10px; }
+    #level-challenge-h5 .section-heading { justify-content: space-between; gap: 10px; margin: 24px 1px 11px; }
+    #level-challenge-h5 .section-heading strong { font-size: 14px; font-weight: 680; }
+    #level-challenge-h5 .section-heading small { color: var(--h-muted); font-size: 10px; }
+    #level-challenge-h5 .activity-entry {
+      display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--h-border);
+      border-radius: 17px; color: var(--h-text); background: var(--h-surface); text-align: left;
+      cursor: pointer; transition: transform .16s ease, box-shadow .16s ease;
+    }
+    #level-challenge-h5 .activity-entry:hover { transform: translateY(-2px); box-shadow: 0 10px 25px #171d2b16; }
+    #level-challenge-h5 .activity-entry:focus-visible, #level-challenge-h5 .tap-button:focus-visible,
+    #level-challenge-h5 .nav-button:focus-visible, #level-challenge-h5 .modal-close:focus-visible {
+      outline: 3px solid #a59dff; outline-offset: 2px;
+    }
+    #level-challenge-h5 .entry-art {
+      position: relative; overflow: hidden; min-height: 100px; padding: 17px 17px 15px;
+      color: #f3f2ff; background: linear-gradient(115deg,#20243a,#393166 68%,#483a81);
+    }
+    #level-challenge-h5 .entry-art::after { position: absolute; right: -25px; bottom: -68px; width: 130px; height: 130px; border: 1px solid #ffffff2a; border-radius: 50%; box-shadow: 0 0 0 17px #ffffff08; content: ""; }
+    #level-challenge-h5 .entry-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border: 1px solid #d6d1ff3d; border-radius: 999px; color: #dedbff; background: #ffffff0d; font-size: 9px; }
+    #level-challenge-h5 .entry-chip .live-dot { width: 5px; height: 5px; }
+    #level-challenge-h5 .entry-art-title { display: flex; align-items: end; justify-content: space-between; gap: 8px; margin-top: 12px; }
+    #level-challenge-h5 .entry-art-title strong { font-size: 17px; font-weight: 680; }
+    #level-challenge-h5 .entry-art-title span { color: #f3d993; font-size: 11px; white-space: nowrap; }
+    #level-challenge-h5 .entry-copy { padding: 14px 15px 15px; }
+    #level-challenge-h5 .entry-heading { justify-content: space-between; gap: 10px; font-size: 12px; font-weight: 650; }
+    #level-challenge-h5 .entry-chevron { color: var(--h-muted); font-size: 18px; line-height: 1; }
+    #level-challenge-h5 .entry-copy p { margin: 6px 0 11px; color: var(--h-muted); font-size: 10px; line-height: 1.5; }
+    #level-challenge-h5 .entry-date { gap: 6px; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .home-hint { margin: 15px 4px 0; color: var(--h-muted); font-size: 10px; line-height: 1.5; }
+
+    #level-challenge-h5 .mobile-nav { gap: 10px; margin: -2px 0 15px; }
+    #level-challenge-h5 .nav-button {
+      display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center;
+      border: 1px solid var(--h-border); border-radius: 11px; color: var(--h-text);
+      background: var(--h-surface); font-size: 20px; cursor: pointer;
+    }
+    #level-challenge-h5 .mobile-nav-title { justify-content: space-between; flex: 1; min-width: 0; gap: 8px; }
+    #level-challenge-h5 .mobile-nav-title strong { overflow: hidden; font-size: 13px; font-weight: 680; text-overflow: ellipsis; white-space: nowrap; }
+    #level-challenge-h5 .text-action { border: 0; padding: 6px 0 6px 5px; color: var(--h-purple); background: transparent; font-size: 10px; font-weight: 650; cursor: pointer; white-space: nowrap; }
+    #level-challenge-h5 .event-panel {
+      position: relative; overflow: hidden; padding: 17px 16px; border-radius: 17px; color: #f4f3ff;
+      background: linear-gradient(125deg,#161b2b,#28264c 60%,#3e3475);
+    }
+    #level-challenge-h5 .event-panel::after { position: absolute; right: -50px; top: -67px; width: 160px; height: 160px; border: 1px solid #ffffff1a; border-radius: 50%; box-shadow: 0 0 0 22px #ffffff08; content: ""; }
+    #level-challenge-h5 .event-panel-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    #level-challenge-h5 .event-status { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; color: #dcdaff; background: #ffffff12; font-size: 9px; }
+    #level-challenge-h5 .rules-top-button { min-height: 28px; padding: 0 9px; border: 1px solid #ffffff30; border-radius: 8px; color: #f2f0ff; background: #ffffff10; font-size: 9px; font-weight: 650; cursor: pointer; }
+    #level-challenge-h5 .event-panel h1 { position: relative; z-index: 1; margin: 11px 0 7px; font-size: 20px; line-height: 1.25; font-weight: 700; letter-spacing: -.03em; }
+    #level-challenge-h5 .event-panel p { position: relative; z-index: 1; margin: 0; color: #c3c5d2; font-size: 10px; }
+    #level-challenge-h5 .event-bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 15px; padding-top: 12px; border-top: 1px solid #ffffff16; color: #e6d49f; font-size: 10px; }
+    #level-challenge-h5 .event-bottom strong { color: #f3d991; font-size: 13px; }
+
+    #level-challenge-h5 .profile-card { margin-top: 13px; padding: 14px; border: 1px solid var(--h-border); border-radius: 16px; background: var(--h-surface); }
+    #level-challenge-h5 .profile-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    #level-challenge-h5 .profile-card-head strong { font-size: 12px; font-weight: 680; }
+    #level-challenge-h5 .profile-card-head span { color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .metric-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid var(--h-border); border-left: 1px solid var(--h-border); border-radius: 10px; overflow: hidden; }
+    #level-challenge-h5 .metric { min-width: 0; min-height: 61px; padding: 10px 10px 9px; border-right: 1px solid var(--h-border); border-bottom: 1px solid var(--h-border); background: var(--h-surface); }
+    #level-challenge-h5 .metric small { display: block; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .metric strong { display: block; overflow: hidden; margin-top: 6px; font-size: 12px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+    #level-challenge-h5 .metric .address { font-size: 10px; }
+    #level-challenge-h5 .level-metric { display: flex; align-items: center; gap: 9px; }
+    #level-challenge-h5 .level-orb { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid #dfc589; border-radius: 11px; color: #f1d998; background: linear-gradient(140deg,#332d4c,#181c28); font-size: 13px; font-weight: 700; }
+    #level-challenge-h5 .challenge-head { margin: 22px 1px 11px; }
+    #level-challenge-h5 .challenge-head strong { display: block; font-size: 14px; font-weight: 680; }
+    #level-challenge-h5 .challenge-head small { display: block; margin-top: 4px; color: var(--h-muted); font-size: 10px; }
+    #level-challenge-h5 .challenge-list { display: grid; gap: 8px; }
+    #level-challenge-h5 .challenge-card { padding: 12px; border: 1px solid var(--h-border); border-radius: 14px; background: var(--h-surface); }
+    #level-challenge-h5 .challenge-card.is-complete { border-color: light-dark(#d8eee2,#30473a); background: linear-gradient(105deg,var(--h-green-soft),var(--h-surface) 74%); }
+    #level-challenge-h5 .challenge-card.is-failed { border-color: light-dark(#f0d8d9,#513439); background: linear-gradient(105deg,light-dark(#fff6f5,#2a2126),var(--h-surface) 82%); }
+    #level-challenge-h5 .challenge-card.is-applied { border-color: light-dark(#ddd9ff,#413b63); background: linear-gradient(105deg,var(--h-purple-soft),var(--h-surface) 82%); }
+    #level-challenge-h5 .challenge-summary { gap: 9px; min-width: 0; }
+    #level-challenge-h5 .seal { display: grid; width: 27px; height: 27px; flex: 0 0 27px; place-items: center; border-radius: 50%; color: #8c95a3; background: light-dark(#eef0f4,#303844); font-size: 12px; font-weight: 700; }
+    #level-challenge-h5 .seal.success { color: white; background: var(--h-green); box-shadow: 0 0 0 3px light-dark(#d6f1e3,#263e33); }
+    #level-challenge-h5 .seal.failed { color: #fff; background: #d97658; box-shadow: 0 0 0 3px light-dark(#fae9e2,#49312d); }
+    #level-challenge-h5 .seal.live { color: #fff; background: var(--h-purple); box-shadow: 0 0 0 3px light-dark(#e5e2ff,#393653); }
+    #level-challenge-h5 .challenge-copy { min-width: 0; flex: 1; }
+    #level-challenge-h5 .row-title-line { justify-content: space-between; gap: 6px; }
+    #level-challenge-h5 .challenge-name { min-width: 0; font-size: 12px; font-weight: 670; }
+    #level-challenge-h5 .status-label { color: var(--h-muted); font-size: 9px; white-space: nowrap; }
+    #level-challenge-h5 .status-label.good { color: var(--h-green); }
+    #level-challenge-h5 .status-label.fail { color: var(--h-red); }
+    #level-challenge-h5 .status-label.live { color: var(--h-purple); }
+    #level-challenge-h5 .row-meta { gap: 9px; margin-top: 5px; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .row-meta strong { color: var(--h-text); font-size: 10px; font-weight: 630; }
+    #level-challenge-h5 .tap-button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 32px; flex: 0 0 auto;
+      padding: 0 10px; border: 1px solid var(--h-border); border-radius: 9px; color: var(--h-muted);
+      background: var(--h-soft); font-size: 9px; font-weight: 650; white-space: nowrap; cursor: pointer;
+      transition: background .16s ease, transform .16s ease;
+    }
+    #level-challenge-h5 .tap-button:hover { transform: translateY(-1px); }
+    #level-challenge-h5 .tap-button.primary { border-color: transparent; color: #fff; background: var(--h-purple); box-shadow: 0 4px 11px #7162ef30; }
+    #level-challenge-h5 .tap-button.claim { border-color: transparent; color: #fff; background: #12845b; }
+    #level-challenge-h5 .tap-button[disabled] { color: var(--h-muted); background: var(--h-soft); cursor: default; box-shadow: none; }
+    #level-challenge-h5 .challenge-details { margin: 12px 0 0 36px; padding-top: 11px; border-top: 1px solid var(--h-border); }
+    #level-challenge-h5 .attempt-label { margin-bottom: 9px; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .progress-item + .progress-item { margin-top: 11px; }
+    #level-challenge-h5 .progress-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; font-size: 10px; }
+    #level-challenge-h5 .progress-head span { color: var(--h-muted); }
+    #level-challenge-h5 .progress-head strong { font-size: 10px; font-weight: 650; }
+    #level-challenge-h5 .progress-track { overflow: hidden; height: 6px; border-radius: 999px; background: light-dark(#e9ecf2,#303743); }
+    #level-challenge-h5 .progress-fill { height: 100%; border-radius: inherit; background: var(--h-purple); }
+    #level-challenge-h5 .progress-fill.secondary { background: #38ab80; }
+    #level-challenge-h5 .progress-amount { display: block; margin-top: 4px; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .challenge-dates { justify-content: space-between; align-items: flex-start; gap: 8px; margin-top: 12px; padding: 9px 10px; border-radius: 9px; background: var(--h-soft); }
+    #level-challenge-h5 .challenge-dates div { min-width: 0; }
+    #level-challenge-h5 .challenge-dates small { display: block; margin-bottom: 4px; color: var(--h-muted); font-size: 8px; }
+    #level-challenge-h5 .challenge-dates strong { display: block; font-size: 9px; font-weight: 620; white-space: nowrap; }
+    #level-challenge-h5 .challenge-dates .deadline { color: var(--h-red); }
+    #level-challenge-h5 .overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 14px; background: #070b13a8; backdrop-filter: blur(5px); }
+    #level-challenge-h5 .overlay[hidden] { display: none; }
+    #level-challenge-h5 .dialog { width: min(100%,420px); max-height: min(84vh,720px); overflow: auto; border: 1px solid var(--h-border); border-radius: 20px; color: var(--h-text); background: var(--h-surface); box-shadow: 0 24px 75px #05081055; }
+    #level-challenge-h5 .dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 18px 12px; }
+    #level-challenge-h5 .dialog-head small { display: block; margin-bottom: 5px; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .dialog-head h2 { margin: 0; font-size: 16px; font-weight: 700; }
+    #level-challenge-h5 .modal-close { display: grid; width: 30px; height: 30px; flex: 0 0 30px; place-items: center; border: 1px solid var(--h-border); border-radius: 9px; color: var(--h-muted); background: var(--h-soft); font-size: 18px; cursor: pointer; }
+    #level-challenge-h5 .dialog-body { padding: 2px 18px 17px; }
+    #level-challenge-h5 .dialog-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 18px 17px; border-top: 1px solid var(--h-border); }
+    #level-challenge-h5 .benefit-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid light-dark(#e8e4ff,#393651); border-radius: 13px; background: var(--h-purple-soft); }
+    #level-challenge-h5 .benefit-box small { display: block; color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .benefit-box strong { display: block; margin-top: 5px; font-size: 19px; font-weight: 700; }
+    #level-challenge-h5 .benefit-spark { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 12px; color: var(--h-purple); background: var(--h-surface); font-size: 19px; }
+    #level-challenge-h5 .modal-list { display: grid; gap: 10px; margin: 15px 0 0; padding: 0; list-style: none; }
+    #level-challenge-h5 .modal-list li { display: flex; align-items: flex-start; gap: 8px; color: var(--h-muted); font-size: 10px; line-height: 1.55; }
+    #level-challenge-h5 .check-dot { display: grid; width: 16px; height: 16px; flex: 0 0 16px; place-items: center; margin-top: 1px; border-radius: 50%; color: var(--h-purple); background: var(--h-purple-soft); font-size: 9px; font-weight: 700; }
+    #level-challenge-h5 .modal-note { margin-top: 12px; padding: 10px; border-radius: 9px; color: var(--h-muted); background: var(--h-soft); font-size: 9px; line-height: 1.5; }
+    #level-challenge-h5 .modal-button { min-height: 36px; padding: 0 12px; border: 1px solid var(--h-border); border-radius: 10px; color: var(--h-text); background: var(--h-surface); font-size: 10px; font-weight: 650; cursor: pointer; }
+    #level-challenge-h5 .modal-button.primary { border-color: transparent; color: #fff; background: var(--h-purple); }
+    #level-challenge-h5 .modal-button.success { border-color: transparent; color: #fff; background: #12845b; }
+    #level-challenge-h5 .success-state { display: grid; justify-items: center; padding: 5px 4px; text-align: center; }
+    #level-challenge-h5 .success-mark { display: grid; width: 58px; height: 58px; place-items: center; margin-bottom: 11px; border-radius: 50%; color: var(--h-green); background: var(--h-green-soft); font-size: 26px; }
+    #level-challenge-h5 .success-state strong { font-size: 15px; }
+    #level-challenge-h5 .success-state p { max-width: 290px; margin: 7px 0 0; color: var(--h-muted); font-size: 10px; line-height: 1.55; }
+    #level-challenge-h5 .wallet-preview { padding: 13px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-soft); }
+    #level-challenge-h5 .wallet-title { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; font-size: 12px; font-weight: 670; }
+    #level-challenge-h5 .fox { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 9px; background: #fff0d8; font-size: 17px; }
+    #level-challenge-h5 .wallet-line { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid var(--h-border); color: var(--h-muted); font-size: 9px; }
+    #level-challenge-h5 .wallet-line strong { color: var(--h-text); font-weight: 620; text-align: right; }
+    #level-challenge-h5 .table-wrap { overflow-x: auto; }
+    #level-challenge-h5 .history-table { width: 100%; border-collapse: collapse; font-size: 9px; text-align: left; }
+    #level-challenge-h5 .history-table th { padding: 9px 6px; color: var(--h-muted); background: var(--h-soft); font-weight: 500; white-space: nowrap; }
+    #level-challenge-h5 .history-table td { padding: 11px 6px; border-bottom: 1px solid var(--h-border); white-space: nowrap; }
+    #level-challenge-h5 .history-table tr:last-child td { border-bottom: 0; }
+    #level-challenge-h5 .history-state { gap: 5px; color: var(--h-green); font-weight: 620; }
+    #level-challenge-h5 .history-state.pending { color: var(--h-amber); }
+    #level-challenge-h5 .history-state::before { width: 5px; height: 5px; border-radius: 50%; background: currentColor; content: ""; }
+    #level-challenge-h5 .toast { position: fixed; z-index: 1100; left: 50%; bottom: 22px; gap: 8px; max-width: calc(100vw - 28px); padding: 11px 14px; border: 1px solid var(--h-border); border-radius: 11px; color: var(--h-text); background: var(--h-surface); box-shadow: 0 10px 32px #070b1450; font-size: 10px; transform: translateX(-50%); }
+    #level-challenge-h5 .toast[hidden] { display: none; }
+    #level-challenge-h5 .toast-mark { color: var(--h-green); font-size: 14px; font-weight: 700; }
+    @media (max-width: 360px) {
+      #level-challenge-h5 { padding: 10px 6px; }
+      #level-challenge-h5 .screen { padding: 15px 12px 22px; }
+      #level-challenge-h5 .challenge-card { padding: 10px; }
+      #level-challenge-h5 .challenge-details { margin-left: 32px; }
+      #level-challenge-h5 .tap-button { padding: 0 8px; }
+      #level-challenge-h5 .challenge-dates strong { font-size: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #level-challenge-h5 .activity-entry, #level-challenge-h5 .tap-button { transition: none; }
+      #level-challenge-h5 .activity-entry:hover, #level-challenge-h5 .tap-button:hover { transform: none; }
+    }
+  </style>
+
+  <main class="phone-shell" aria-label="平台活动中心手机版原型">
+    <section class="screen" id="home-screen" aria-labelledby="home-title">
+      <header class="topline">
+        <div class="home-brand">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span class="brand-copy"><strong id="home-title">活动中心</strong><small>平台活动 · 成长奖励</small></span>
+        </div>
+        <span class="wallet-mini"><span class="wallet-dot" aria-hidden="true"></span>0x71C8…A92D</span>
+      </header>
+
+      <section class="home-hero">
+        <div class="hero-kicker"><span class="live-dot" aria-hidden="true"></span>活动进行中</div>
+        <h1>升级每一步<br>都值得奖励</h1>
+        <p>参与平台等级挑战，完成目标升级，赢取专属奖励。</p>
+        <div class="home-date">2026.11.01 — 2027.02.28</div>
+      </section>
+
+      <div class="section-heading"><strong>进行中的活动</strong><small>1 个活动</small></div>
+      <button class="activity-entry" id="open-challenge" type="button" aria-label="打开等级跃升挑战赛">
+        <div class="entry-art">
+          <span class="entry-chip"><span class="live-dot" aria-hidden="true"></span>活动进行中</span>
+          <div class="entry-art-title"><strong>等级跃升挑战赛</strong><span>最高 2 BTC</span></div>
+        </div>
+        <div class="entry-copy">
+          <div class="entry-heading"><span>平台等级挑战赛</span><span class="entry-chevron" aria-hidden="true">›</span></div>
+          <p>每次挑战向上跃升 2 级，达成目标等级即可领取奖励。</p>
+          <div class="entry-date"><span>活动时间</span><span>2026年11月1日</span><span>—</span><span>2027年2月28日</span></div>
+        </div>
+      </button>
+      <p class="home-hint">点击活动条目查看挑战等级、进度与奖励详情。</p>
+    </section>
+
+    <section class="screen" id="detail-screen" aria-labelledby="detail-title" hidden>
+      <header class="mobile-nav">
+        <button class="nav-button" id="back-home" type="button" aria-label="返回活动中心">‹</button>
+        <div class="mobile-nav-title"><strong id="detail-title">平台等级挑战赛</strong><button class="text-action" id="open-history" type="button">提取记录</button></div>
+      </header>
+
+      <section class="event-panel">
+        <div class="event-panel-top"><span class="event-status"><span class="live-dot" aria-hidden="true"></span>活动进行中</span><button class="rules-top-button" id="open-rules" type="button">挑战规则</button></div>
+        <h1>平台等级挑战赛</h1>
+        <p>活动时间：2026年11月1日 — 2027年2月28日</p>
+        <div class="event-bottom"><span>等级越级挑战 · 每次向上 2 级</span><span>最高奖励 <strong>2 BTC</strong></span></div>
+      </section>
+
+      <section class="profile-card" aria-labelledby="profile-heading">
+        <div class="profile-card-head"><strong id="profile-heading">我的挑战数据</strong><span>示例用户 · 当前账户</span></div>
+        <div class="metric-grid">
+          <div class="metric level-metric"><span class="level-orb">V3</span><span><small>当前平台等级</small><strong>成长挑战者</strong></span></div>
+          <div class="metric"><small>团队人数</small><strong>128 人</strong></div>
+          <div class="metric"><small>团队业绩</small><strong>$86,420</strong></div>
+          <div class="metric"><small>大区地址</small><strong class="address">0x71C8…A92D</strong></div>
+          <div class="metric"><small>大区业绩</small><strong>$32,800</strong></div>
+          <div class="metric"><small>小区业绩</small><strong>$14,000</strong></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="challenge-list-title">
+        <div class="challenge-head"><strong id="challenge-list-title">等级挑战</strong><small>选择等级查看挑战权益，当前等级可重新申请</small></div>
+        <div class="challenge-list" id="challenge-list" aria-live="polite"></div>
+      </section>
+
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="dialog-head"><div><small id="modal-kicker">等级挑战赛</small><h2 id="modal-title">详情</h2></div><button class="modal-close" id="modal-close" type="button" aria-label="关闭弹窗">×</button></header>
+      <div class="dialog-body" id="modal-body"></div>
+      <footer class="dialog-footer" id="modal-footer"></footer>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden><span class="toast-mark">✓</span><span id="toast-text"></span></div>
+
+  <script>
+    (function () {
+      const root = document.getElementById("level-challenge-h5");
+      if (!root) return;
+      const activities = [
+        { from: "普通用户 / V0", to: "V2", days: 15, reward: "$600", unit: "USDT" },
+        { from: "V1", to: "V3", days: 20, reward: "$1,000", unit: "USDT" },
+        { from: "V2", to: "V4", days: 30, reward: "$2,000", unit: "USDT" },
+        { from: "V3", to: "V5", days: 40, reward: "$4,000", unit: "USDT" },
+        { from: "V4", to: "V6", days: 50, reward: "$8,000", unit: "USDT" },
+        { from: "V5", to: "V7", days: 60, reward: "$16,000", unit: "USDT" },
+        { from: "V6", to: "V8", days: 70, reward: "0.5 BTC", unit: "或等值 USDT" },
+        { from: "V7", to: "V9", days: 80, reward: "1 BTC", unit: "或等值 USDT" },
+        { from: "V8", to: "V10", days: 90, reward: "2 BTC", unit: "或等值 USDT" }
+      ];
+      let reapplicationStarted = false;
+      let rewardClaimed = false;
+      let toastTimer = null;
+      let attemptStart = new Date("2026-09-30T16:22:31");
+      let attemptEnd = new Date("2026-11-09T16:22:31");
+      const history = [
+        { type: "V2升级V4", reward: "2000USDT", time: "2026-11-10 16:22:31", status: "成功" },
+        { type: "V3升级V5", reward: "4000USDT", time: "2026-11-11 16:22:31", status: "提币中" }
+      ];
+      const homeScreen = root.querySelector("#home-screen");
+      const detailScreen = root.querySelector("#detail-screen");
+      const challengeList = root.querySelector("#challenge-list");
+      const overlay = root.querySelector("#overlay");
+      const dialog = root.querySelector(".dialog");
+      const modalTitle = root.querySelector("#modal-title");
+      const modalKicker = root.querySelector("#modal-kicker");
+      const modalBody = root.querySelector("#modal-body");
+      const modalFooter = root.querySelector("#modal-footer");
+      const toast = root.querySelector("#toast");
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined && text !== null) node.textContent = text;
+        return node;
+      }
+      function btn(parent, label, className, handler) {
+        const node = el("button", "modal-button " + (className || ""), label);
+        node.type = "button";
+        node.addEventListener("click", handler);
+        parent.appendChild(node);
+        return node;
+      }
+      function tap(parent, label, className, handler) {
+        const node = el("button", "tap-button " + (className || ""), label);
+        node.type = "button";
+        node.addEventListener("click", handler);
+        parent.appendChild(node);
+        return node;
+      }
+      function statusFor(index) {
+        if (index === 0) return "claimed";
+        if (index === 1) return rewardClaimed ? "claimed" : "complete";
+        if (index === 3) return reapplicationStarted ? "applied" : "failed";
+        return "locked";
+      }
+      function formatDate(date) {
+        const pad = function (value) { return String(value).padStart(2, "0"); };
+        return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()) + " " + pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
+      }
+      function renderProgress(label, amount, percentage, secondary) {
+        const item = el("div", "progress-item");
+        const head = el("div", "progress-head");
+        head.appendChild(el("span", "", label));
+        head.appendChild(el("strong", "", percentage + "%"));
+        item.appendChild(head);
+        const track = el("div", "progress-track");
+        track.setAttribute("role", "progressbar");
+        track.setAttribute("aria-label", label);
+        track.setAttribute("aria-valuenow", String(percentage));
+        track.setAttribute("aria-valuemin", "0");
+        track.setAttribute("aria-valuemax", "100");
+        const fill = el("div", "progress-fill" + (secondary ? " secondary" : ""));
+        fill.style.width = percentage + "%";
+        track.appendChild(fill);
+        item.appendChild(track);
+        item.appendChild(el("small", "progress-amount", amount));
+        return item;
+      }
+      function renderChallengeRows() {
+        challengeList.replaceChildren();
+        activities.forEach(function (challenge, index) {
+          const state = statusFor(index);
+          const card = el("article", "challenge-card");
+          if (state === "claimed" || state === "complete") card.classList.add("is-complete");
+          if (state === "failed") card.classList.add("is-failed");
+          if (state === "applied") card.classList.add("is-applied");
+          const summary = el("div", "challenge-summary");
+          const seal = el("span", "seal", state === "claimed" || state === "complete" ? "✓" : state === "failed" ? "!" : state === "applied" ? "↗" : "•");
+          seal.setAttribute("aria-label", state === "claimed" || state === "complete" ? "挑战成功徽章" : state === "failed" ? "申请失败" : state === "applied" ? "挑战进行中" : "未完成");
+          if (state === "claimed" || state === "complete") seal.classList.add("success");
+          if (state === "failed") seal.classList.add("failed");
+          if (state === "applied") seal.classList.add("live");
+          summary.appendChild(seal);
+
+          const copy = el("div", "challenge-copy");
+          const titleLine = el("div", "row-title-line");
+          titleLine.appendChild(el("strong", "challenge-name", challenge.from + " → " + challenge.to));
+          const stateText = state === "claimed" ? (index === 0 ? "已领取" : "挑战成功") : state === "complete" ? "挑战成功 · 待领取" : state === "failed" ? "申请失败 · 未达成目标" : state === "applied" ? "挑战进行中" : "未完成";
+          const stateClass = state === "claimed" || state === "complete" ? " good" : state === "failed" ? " fail" : state === "applied" ? " live" : "";
+          titleLine.appendChild(el("span", "status-label" + stateClass, stateText));
+          copy.appendChild(titleLine);
+          const meta = el("div", "row-meta");
+          meta.appendChild(el("span", "", challenge.days + " 天"));
+          meta.appendChild(el("span", "", "奖励"));
+          meta.appendChild(el("strong", "", challenge.reward + " " + challenge.unit));
+          copy.appendChild(meta);
+          summary.appendChild(copy);
+
+          if (index === 3 && state === "failed") {
+            tap(summary, "再次申请", "primary", function () { reapply(); });
+          } else if (index === 3 && state === "applied") {
+            const underway = tap(summary, "挑战进行中", "", function () {});
+            underway.disabled = true;
+          } else if (state === "complete") {
+            tap(summary, "领取奖励", "claim", function () { openClaim(index); });
+          } else if (state === "claimed") {
+            tap(summary, "已领取", "", function () { openHistory(); });
+          } else {
+            const apply = tap(summary, "申请", "", function () { openBenefit(index); });
+            apply.setAttribute("aria-label", "查看" + challenge.from + "升级到" + challenge.to + "的挑战权益");
+          }
+          card.appendChild(summary);
+
+          if (index === 3) {
+            const details = el("div", "challenge-details");
+            details.appendChild(el("div", "attempt-label", state === "failed" ? "上次申请记录 · 失败样例" : "本次挑战进度"));
+            details.appendChild(renderProgress("个人有效业绩", "$9,000 · 目标进度", 30, false));
+            details.appendChild(renderProgress("小区业绩", "$14,000 · 目标进度", 70, true));
+            const dates = el("div", "challenge-dates");
+            const start = el("div", "");
+            start.appendChild(el("small", "", "开始时间"));
+            start.appendChild(el("strong", "", formatDate(attemptStart)));
+            const end = el("div", "");
+            end.appendChild(el("small", "", "截止时间"));
+            end.appendChild(el("strong", "deadline", formatDate(attemptEnd)));
+            dates.appendChild(start);
+            dates.appendChild(end);
+            details.appendChild(dates);
+            card.appendChild(details);
+          }
+          challengeList.appendChild(card);
+        });
+      }
+      function showScreen(which) {
+        const isHome = which === "home";
+        homeScreen.hidden = !isHome;
+        detailScreen.hidden = isHome;
+        if (!isHome) renderChallengeRows();
+        root.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      function openModal(title, kicker) {
+        modalTitle.textContent = title;
+        modalKicker.textContent = kicker || "等级挑战赛";
+        modalBody.replaceChildren();
+        modalFooter.replaceChildren();
+        overlay.hidden = false;
+        root.querySelector("#modal-close").focus();
+      }
+      function closeModal() { overlay.hidden = true; }
+      function benefitBox(parent, challenge) {
+        const box = el("div", "benefit-box");
+        const copy = el("div", "");
+        copy.appendChild(el("small", "", "挑战成功可获得"));
+        copy.appendChild(el("strong", "", challenge.reward));
+        copy.appendChild(el("small", "", challenge.unit + " · 挑战时限 " + challenge.days + " 天"));
+        box.appendChild(copy);
+        box.appendChild(el("span", "benefit-spark", "✦"));
+        parent.appendChild(box);
+      }
+      function addRule(parent, text) {
+        const row = el("li", "");
+        row.appendChild(el("span", "check-dot", "✓"));
+        row.appendChild(el("span", "", text));
+        parent.appendChild(row);
+      }
+      function openBenefit(index) {
+        const challenge = activities[index];
+        openModal(challenge.from + " → " + challenge.to + " 挑战权益", "等级挑战奖励");
+        benefitBox(modalBody, challenge);
+        const list = el("ul", "modal-list");
+        addRule(list, "在挑战期限内完成目标等级升级，即视为挑战成功。");
+        addRule(list, "挑战成功后，可领取对应奖励；BTC 奖励可选择领取 BTC 或等值 USDT。");
+        modalBody.appendChild(list);
+        btn(modalFooter, "关闭", "", closeModal);
+      }
+      function openRules() {
+        openModal("级别挑战赛规则", "申请前请了解挑战流程");
+        const list = el("ul", "modal-list");
+        addRule(list, "各等级挑战目标为在当前级别基础上跃升 2 级。");
+        addRule(list, "用户在规定的挑战时间内完成目标等级升级，即挑战成功。");
+        addRule(list, "挑战成功后可领取该级奖励。确认领取后由钱包确认提币，可在提取记录查看状态。");
+        modalBody.appendChild(list);
+        btn(modalFooter, "关闭", "", closeModal);
+      }
+      function openClaim(index) {
+        const challenge = activities[index];
+        openModal("挑战奖励可领取", "挑战成功");
+        const success = el("div", "success-state");
+        success.appendChild(el("div", "success-mark", "✓"));
+        success.appendChild(el("strong", "", "恭喜，挑战成功！"));
+        success.appendChild(el("p", "", challenge.from + " 升级至 " + challenge.to + " 已达成，奖励 " + challenge.reward + " " + challenge.unit + " 可领取。"));
+        modalBody.appendChild(success);
+        modalBody.appendChild(el("div", "modal-note", "确认后将打开 MetaMask 钱包确认领取。请核对钱包地址与网络。"));
+        btn(modalFooter, "稍后领取", "", closeModal);
+        btn(modalFooter, "确认领取", "success", function () { openWallet(index); });
+      }
+      function openWallet(index) {
+        const challenge = activities[index];
+        openModal("确认提取奖励", "MetaMask 钱包确认");
+        const wallet = el("div", "wallet-preview");
+        const title = el("div", "wallet-title");
+        title.appendChild(el("span", "fox", "🦊"));
+        title.appendChild(el("span", "", "MetaMask"));
+        wallet.appendChild(title);
+        [["操作", "领取挑战奖励"], ["奖励", challenge.reward + " " + challenge.unit], ["目标网络", "BNB Smart Chain"], ["收款钱包", "0x71C8…A92D"]].forEach(function (pair) {
+          const row = el("div", "wallet-line");
+          row.appendChild(el("span", "", pair[0]));
+          row.appendChild(el("strong", "", pair[1]));
+          wallet.appendChild(row);
+        });
+        modalBody.appendChild(wallet);
+        modalBody.appendChild(el("div", "modal-note", "钱包交互原型演示 · 此页面不会发起真实链上交易"));
+        btn(modalFooter, "取消", "", closeModal);
+        btn(modalFooter, "确认提币", "primary", function () {
+          rewardClaimed = true;
+          history.push({ type: "V1升级V3", reward: "1000USDT", time: "刚刚", status: "提币中" });
+          closeModal();
+          renderChallengeRows();
+          showToast("提币请求已提交，可在提取记录查看状态");
+        });
+      }
+      function reapply() {
+        attemptStart = new Date();
+        attemptEnd = new Date(attemptStart.getTime() + 40 * 24 * 60 * 60 * 1000);
+        reapplicationStarted = true;
+        renderChallengeRows();
+        showToast("已重新申请，40 天挑战计时已开始");
+      }
+      function openHistory() {
+        openModal("提取记录", "奖励提币记录");
+        const wrap = el("div", "table-wrap");
+        const table = el("table", "history-table");
+        const head = document.createElement("thead");
+        const heading = document.createElement("tr");
+        ["类型", "奖励数量", "提币时间", "状态"].forEach(function (label) { heading.appendChild(el("th", "", label)); });
+        head.appendChild(heading);
+        table.appendChild(head);
+        const body = document.createElement("tbody");
+        history.forEach(function (record) {
+          const row = document.createElement("tr");
+          row.appendChild(el("td", "", record.type));
+          row.appendChild(el("td", "", record.reward));
+          row.appendChild(el("td", "", record.time));
+          const status = el("td", "");
+          status.appendChild(el("span", "history-state" + (record.status === "提币中" ? " pending" : ""), record.status));
+          row.appendChild(status);
+          body.appendChild(row);
+        });
+        table.appendChild(body);
+        wrap.appendChild(table);
+        modalBody.appendChild(wrap);
+        btn(modalFooter, "关闭", "", closeModal);
+      }
+      function showToast(message) {
+        root.querySelector("#toast-text").textContent = message;
+        toast.hidden = false;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.hidden = true; }, 3400);
+      }
+
+      root.querySelector("#open-challenge").addEventListener("click", function () { showScreen("detail"); });
+      root.querySelector("#back-home").addEventListener("click", function () { showScreen("home"); });
+      root.querySelector("#open-history").addEventListener("click", openHistory);
+      root.querySelector("#open-rules").addEventListener("click", openRules);
+      root.querySelector("#modal-close").addEventListener("click", closeModal);
+      overlay.addEventListener("click", function (event) { if (event.target === overlay) closeModal(); });
+      root.addEventListener("keydown", function (event) { if (event.key === "Escape" && !overlay.hidden) closeModal(); });
+    })();
+  </script>
+</div>
+
+</body>
+</html>
