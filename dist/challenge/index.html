@@ -294,7 +294,7 @@
       <section class="profile-card" aria-labelledby="profile-heading">
         <div class="profile-card-head"><strong id="profile-heading">我的挑战数据</strong><span>示例用户 · 当前账户</span></div>
         <div class="metric-grid">
-          <div class="metric level-metric"><span class="level-orb">V3</span><span><small>当前平台等级</small><strong>成长挑战者</strong></span></div>
+          <div class="metric level-metric"><span class="level-orb">V3</span><span><small>您的等级</small><strong></strong></span></div>
           <div class="metric"><small>团队人数</small><strong>128 人</strong></div>
           <div class="metric"><small>团队业绩</small><strong>$86,420</strong></div>
           <div class="metric"><small>大区地址</small><strong class="address">0x71C8…A92D</strong></div>
@@ -304,7 +304,7 @@
       </section>
 
       <section aria-labelledby="challenge-list-title">
-        <div class="challenge-head"><strong id="challenge-list-title">等级挑战</strong><small>选择等级查看挑战权益，当前等级可重新申请</small></div>
+        <div class="challenge-head"><strong id="challenge-list-title">等级挑战</strong><small></small></div>
         <div class="challenge-list" id="challenge-list" aria-live="polite"></div>
       </section>
 
@@ -528,7 +528,7 @@
         success.appendChild(el("strong", "", "恭喜，挑战成功！"));
         success.appendChild(el("p", "", challenge.from + " 升级至 " + challenge.to + " 已达成，奖励 " + challenge.reward + " " + challenge.unit + " 可领取。"));
         modalBody.appendChild(success);
-        modalBody.appendChild(el("div", "modal-note", "确认后将打开 MetaMask 钱包确认领取。请核对钱包地址与网络。"));
+        
         btn(modalFooter, "稍后领取", "", closeModal);
         btn(modalFooter, "确认领取", "success", function () { openWallet(index); });
       }
