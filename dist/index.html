@@ -1,29 +1,902 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#101914" />
-  <meta name="description" content="BOT 质押服务" />
-  <title>BOT 质押</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f5f9">
+  <title>BOT巅峰挑战赛 · 平台活动</title>
   <style>
-    :root{--ink:#111914;--sub:#77827c;--bg:#f3f5f2;--card:#fff;--line:#e2e7e3;--green:#42d895;--green-dark:#08784c;--dark:#101914;--soft:#e9f8f0}
-    *{box-sizing:border-box}body{margin:0;background:#e1e6e2;color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}.app{width:min(100%,430px);min-height:100vh;margin:0 auto;background:var(--bg);box-shadow:0 0 60px rgba(16,35,26,.14);padding-bottom:max(22px,env(safe-area-inset-bottom))}
-    main{padding:calc(14px + env(safe-area-inset-top)) 14px 22px}.market-bar{display:flex;align-items:center;justify-content:space-between;margin:0 2px 20px}.market-token{display:flex;align-items:center;gap:9px}.market-icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--dark);color:var(--green);font-size:10px;font-weight:850}.market-copy b{display:block;font-size:14px}.market-copy span{display:block;color:var(--sub);font-size:12px;margin-top:2px}.market-price{text-align:right}.market-price span{display:block;color:var(--sub);font-size:12px}.market-price strong{display:block;font-size:18px;margin-top:2px}
-    .title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 15px}.title-row h1{margin:0;font-size:25px;letter-spacing:-.04em}.calculator-link{display:flex;align-items:center;gap:7px;flex:0 0 auto;border:1px solid #b9e8cf;border-radius:999px;background:var(--soft);padding:9px 13px;color:var(--green-dark);font-size:14px;font-weight:850;box-shadow:0 5px 14px rgba(20,124,79,.08);text-decoration:none}.calculator-link svg{width:16px;height:16px}.calculator-link:active{transform:translateY(1px)}
-    .stake-card{position:relative;overflow:hidden;min-height:180px;border:1px solid #26362e;border-radius:20px;background:linear-gradient(135deg,#111a15 0%,#101914 60%,#193929 100%);padding:25px;color:#fff;box-shadow:0 16px 35px rgba(13,37,25,.13)}.stake-card::after{content:"BOT";position:absolute;right:-15px;bottom:-24px;color:rgba(66,216,149,.10);font-size:86px;font-weight:900;letter-spacing:-.08em}.stake-card strong{display:block;color:var(--green);font-size:22px}.stake-card p{position:relative;z-index:1;margin:14px 0 0;color:#dbe6df;font-size:15px;line-height:1.65}.stake-card .tip{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;margin-top:19px;color:#aab9b1;font-size:12px}.stake-card .tip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(66,216,149,.1)}
-    .status-card{margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(18,45,32,.05)}.status-row{display:flex;align-items:center;justify-content:space-between}.status-row span{color:var(--sub);font-size:12px}.status-row strong{font-size:15px}.status-line{height:1px;margin:14px 0;background:var(--line)}.status-tip{margin:0;color:#7b8881;font-size:12px;line-height:1.55}
-    a:focus-visible{outline:2px solid var(--green);outline-offset:2px}@media(min-width:700px){body{padding:22px 0}.app{border-radius:28px;min-height:calc(100vh - 44px);overflow:hidden}}
+    html, body { min-height: 100%; margin: 0; }
+    body { background: #f3f5f9; font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; }
+    .viz-dotted-background { min-height: 100vh; padding: 18px 0; background-color: #f3f5f9; background-image: radial-gradient(#cdd2df 0.65px, transparent 0.65px); background-size: 16px 16px; }
+    @media (max-width: 460px) { .viz-dotted-background { padding: 0; } #level-challenge-h5 .phone-shell { border-radius: 0; min-height: 100vh; } }
   </style>
 </head>
-<body>
-  <div class="app">
-    <main>
-      <div class="market-bar"><div class="market-token"><span class="market-icon">BOT</span><div class="market-copy"><b>BOT</b><span>质押收益服务</span></div></div><div class="market-price"><span>当前参考单价</span><strong>$12.20</strong></div></div>
-      <div class="title-row"><h1>BOT质押</h1><a class="calculator-link" href="./calculator.html"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="2.75" width="16" height="18.5" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 7h9M8 11h2m4 0h2m-8 4h2m4 0h2m-8 4h2m4 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>收益计算器</a></div>
-      <section class="stake-card" aria-label="BOT 质押简介"><strong>BOT质押</strong><p>质押 BOT 获得收益<br>复利计算，方案一屏对比</p><span class="tip">点击右上角进入收益计算器</span></section>
-      <section class="status-card" aria-label="质押状态"><div class="status-row"><span>当前质押</span><strong>0 BOT</strong></div><div class="status-line"></div><p class="status-tip">选择收益计算器，可按投入数量对比活期与定期方案的预计收益。</p></section>
-    </main>
+<body><div id="level-challenge-h5" class="viz-dotted-background">
+  <style>
+    #level-challenge-h5 {
+      color-scheme: light dark;
+      --h-bg: light-dark(#f3f5f9, #11151c);
+      --h-surface: light-dark(#ffffff, #1b212b);
+      --h-soft: light-dark(#f7f8fb, #232a35);
+      --h-text: light-dark(#171c26, #f1f3f8);
+      --h-muted: light-dark(#717b8c, #9ea8b8);
+      --h-border: light-dark(#e8ebf1, #303945);
+      --h-purple: #7162ef;
+      --h-purple-soft: light-dark(#f0efff, #302d4c);
+      --h-green: light-dark(#12845b, #52d09a);
+      --h-green-soft: light-dark(#e9f7f0, #213a30);
+      --h-red: light-dark(#d34450, #ff747d);
+      --h-amber: light-dark(#ad6716, #efb35f);
+      width: 100%;
+      padding: 20px 12px;
+      color: var(--h-text);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    #level-challenge-h5 * { box-sizing: border-box; }
+    #level-challenge-h5 button { font: inherit; }
+    #level-challenge-h5 .phone-shell {
+      width: 100%; max-width: 420px; margin: 0 auto; overflow: hidden;
+      border: 1px solid var(--h-border); border-radius: 26px;
+      color: var(--h-text); background: var(--h-bg);
+      box-shadow: 0 18px 52px #1419271a;
+    }
+    #level-challenge-h5 .screen { min-height: 680px; padding: 18px 16px 24px; }
+    #level-challenge-h5 .screen[hidden] { display: none; }
+    #level-challenge-h5 .topline, #level-challenge-h5 .home-brand,
+    #level-challenge-h5 .mobile-nav, #level-challenge-h5 .mobile-nav-title,
+    #level-challenge-h5 .entry-heading, #level-challenge-h5 .entry-date,
+    #level-challenge-h5 .section-heading, #level-challenge-h5 .row-title-line,
+    #level-challenge-h5 .row-meta, #level-challenge-h5 .challenge-summary,
+    #level-challenge-h5 .challenge-dates, #level-challenge-h5 .history-state,
+    #level-challenge-h5 .toast {
+      display: flex; align-items: center;
+    }
+    #level-challenge-h5 .topline { justify-content: space-between; gap: 10px; margin-bottom: 21px; }
+    #level-challenge-h5 .home-brand { gap: 10px; min-width: 0; }
+    #level-challenge-h5 .brand-mark {
+      display: grid; width: 36px; height: 36px; flex: 0 0 36px; place-items: center;
+      border-radius: 13px; color: #fff; background: linear-gradient(145deg,#887aff,#5548d7);
+      box-shadow: 0 5px 15px #7162ef38; font-size: 17px; font-weight: 700;
+    }
+    #level-challenge-h5 .brand-copy { min-width: 0; }
+    #level-challenge-h5 .brand-copy strong { display: block; font-size: 18px; font-weight: 680; }
+    #level-challenge-h5 .brand-copy small { display: block; margin-top: 3px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .wallet-mini {
+      display: inline-flex; align-items: center; gap: 6px; min-height: 31px; padding: 0 9px;
+      border: 1px solid var(--h-border); border-radius: 999px; color: var(--h-muted);
+      background: var(--h-surface); font-size: 14px; white-space: nowrap;
+    }
+    #level-challenge-h5 .wallet-dot { width: 6px; height: 6px; border-radius: 50%; background: #36b982; }
+    #level-challenge-h5 .home-hero {
+      position: relative; overflow: hidden; padding: 21px 19px 20px; border-radius: 20px;
+      color: #f5f4ff; background: linear-gradient(130deg,#171b2c,#282555 58%,#4c3888);
+    }
+    #level-challenge-h5 .home-hero::after {
+      position: absolute; right: -49px; top: -65px; width: 175px; height: 175px;
+      border: 1px solid #ffffff20; border-radius: 50%; box-shadow: 0 0 0 22px #ffffff08,0 0 0 47px #ffffff05;
+      content: ""; pointer-events: none;
+    }
+    #level-challenge-h5 .hero-kicker { display: flex; align-items: center; gap: 7px; color: #cecbff; font-size: 14px; letter-spacing: .13em; }
+    #level-challenge-h5 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #54d99b; box-shadow: 0 0 8px #54d99b88; }
+    #level-challenge-h5 .home-hero h1 { max-width: 270px; margin: 13px 0 7px; font-size: 27px; line-height: 1.2; font-weight: 700; letter-spacing: -.03em; }
+    #level-challenge-h5 .home-hero p { margin: 0; color: #c2c3d1; font-size: 14px; line-height: 1.6; }
+    #level-challenge-h5 .home-date { margin-top: 14px; color: #e7d49f; font-size: 14px; }
+    #level-challenge-h5 .section-heading { justify-content: space-between; gap: 10px; margin: 24px 1px 11px; }
+    #level-challenge-h5 .section-heading strong { font-size: 18px; font-weight: 680; }
+    #level-challenge-h5 .section-heading small { color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .activity-entry {
+      display: block; width: 100%; padding: 0; overflow: hidden; border: 1px solid var(--h-border);
+      border-radius: 17px; color: var(--h-text); background: var(--h-surface); text-align: left;
+      cursor: pointer; transition: transform .16s ease, box-shadow .16s ease;
+    }
+    #level-challenge-h5 .activity-entry:hover { transform: translateY(-2px); box-shadow: 0 10px 25px #171d2b16; }
+    #level-challenge-h5 .activity-list { display: grid; gap: 10px; }
+    #level-challenge-h5 .empty-activity { padding: 18px 12px; border: 1px dashed var(--h-border); border-radius: 13px; color: var(--h-muted); background: var(--h-surface); font-size: 14px; text-align: center; }
+    #level-challenge-h5 .ended-heading { margin-top: 23px; }
+    #level-challenge-h5 .activity-entry:focus-visible, #level-challenge-h5 .tap-button:focus-visible,
+    #level-challenge-h5 .nav-button:focus-visible, #level-challenge-h5 .modal-close:focus-visible {
+      outline: 3px solid #a59dff; outline-offset: 2px;
+    }
+    #level-challenge-h5 .entry-art {
+      position: relative; overflow: hidden; min-height: 100px; padding: 17px 17px 15px;
+      color: #f3f2ff; background: linear-gradient(115deg,#20243a,#393166 68%,#483a81);
+    }
+    #level-challenge-h5 .entry-art::after { position: absolute; right: -25px; bottom: -68px; width: 130px; height: 130px; border: 1px solid #ffffff2a; border-radius: 50%; box-shadow: 0 0 0 17px #ffffff08; content: ""; }
+    #level-challenge-h5 .entry-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border: 1px solid #d6d1ff3d; border-radius: 999px; color: #dedbff; background: #ffffff0d; font-size: 14px; }
+    #level-challenge-h5 .entry-chip .live-dot { width: 5px; height: 5px; }
+    #level-challenge-h5 .entry-art-title { display: flex; align-items: end; justify-content: space-between; gap: 8px; margin-top: 12px; }
+    #level-challenge-h5 .entry-art-title strong { font-size: 19px; font-weight: 680; }
+    #level-challenge-h5 .entry-art-title span { color: #f3d993; font-size: 14px; white-space: nowrap; }
+    #level-challenge-h5 .entry-copy { padding: 14px 15px 15px; }
+    #level-challenge-h5 .entry-heading { justify-content: space-between; gap: 10px; font-size: 16px; font-weight: 650; }
+    #level-challenge-h5 .entry-chevron { color: var(--h-muted); font-size: 20px; line-height: 1; }
+    #level-challenge-h5 .entry-copy p { margin: 6px 0 11px; color: var(--h-muted); font-size: 14px; line-height: 1.5; }
+    #level-challenge-h5 .entry-date { gap: 6px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .home-hint { margin: 15px 4px 0; color: var(--h-muted); font-size: 14px; line-height: 1.5; }
+
+    #level-challenge-h5 .mobile-nav { gap: 10px; margin: -2px 0 15px; }
+    #level-challenge-h5 .nav-button {
+      display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center;
+      border: 1px solid var(--h-border); border-radius: 11px; color: var(--h-text);
+      background: var(--h-surface); font-size: 22px; cursor: pointer;
+    }
+    #level-challenge-h5 .mobile-nav-title { justify-content: space-between; flex: 1; min-width: 0; gap: 8px; }
+    #level-challenge-h5 .mobile-nav-title strong { overflow: hidden; font-size: 17px; font-weight: 680; text-overflow: ellipsis; white-space: nowrap; }
+    #level-challenge-h5 .text-action { border: 0; padding: 6px 0 6px 5px; color: var(--h-purple); background: transparent; font-size: 14px; font-weight: 650; cursor: pointer; white-space: nowrap; }
+    #level-challenge-h5 .event-panel {
+      position: relative; overflow: hidden; padding: 17px 16px; border-radius: 17px; color: #f4f3ff;
+      background: linear-gradient(125deg,#161b2b,#28264c 60%,#3e3475);
+    }
+    #level-challenge-h5 .event-panel::after { position: absolute; right: -50px; top: -67px; width: 160px; height: 160px; border: 1px solid #ffffff1a; border-radius: 50%; box-shadow: 0 0 0 22px #ffffff08; content: ""; }
+    #level-challenge-h5 .event-panel-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    #level-challenge-h5 .event-status { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; color: #dcdaff; background: #ffffff12; font-size: 14px; }
+    #level-challenge-h5 .event-panel h1 { position: relative; z-index: 1; margin: 11px 0 7px; font-size: 22px; line-height: 1.25; font-weight: 700; letter-spacing: -.03em; }
+    #level-challenge-h5 .event-panel p { position: relative; z-index: 1; margin: 0; color: #c3c5d2; font-size: 14px; }
+    #level-challenge-h5 .event-bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 15px; padding-top: 12px; border-top: 1px solid #ffffff16; color: #e6d49f; font-size: 14px; }
+    #level-challenge-h5 .event-bottom strong { color: #f3d991; font-size: 17px; }
+
+    #level-challenge-h5 .profile-card { margin-top: 13px; padding: 14px; border: 1px solid var(--h-border); border-radius: 16px; background: var(--h-surface); }
+    #level-challenge-h5 .profile-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    #level-challenge-h5 .profile-card-head strong { font-size: 16px; font-weight: 680; }
+    #level-challenge-h5 .profile-card-head span { color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .metric-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid var(--h-border); border-left: 1px solid var(--h-border); border-radius: 10px; overflow: hidden; }
+    #level-challenge-h5 .metric { min-width: 0; min-height: 61px; padding: 10px 10px 9px; border-right: 1px solid var(--h-border); border-bottom: 1px solid var(--h-border); background: var(--h-surface); }
+    #level-challenge-h5 .metric small { display: block; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .metric strong { display: block; overflow: hidden; margin-top: 6px; font-size: 16px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+    #level-challenge-h5 .level-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding: 0 2px 10px; border-bottom: 1px solid var(--h-border); }
+    #level-challenge-h5 .level-row small { color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .level-orb { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border: 1px solid #dfc589; border-radius: 11px; color: #f1d998; background: linear-gradient(140deg,#332d4c,#181c28); font-size: 17px; font-weight: 700; }
+    #level-challenge-h5 .challenge-head { margin: 22px 1px 11px; }
+    #level-challenge-h5 .challenge-head strong { display: block; font-size: 18px; font-weight: 680; }
+    #level-challenge-h5 .challenge-head small { display: block; margin-top: 4px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .challenge-list { display: grid; gap: 8px; }
+    #level-challenge-h5 .challenge-card { padding: 12px; border: 1px solid var(--h-border); border-radius: 14px; background: var(--h-surface); }
+    #level-challenge-h5 .challenge-card.is-complete { border-color: light-dark(#d8eee2,#30473a); background: linear-gradient(105deg,var(--h-green-soft),var(--h-surface) 74%); }
+    #level-challenge-h5 .challenge-card.is-available { border-color: light-dark(#d8eee2,#30473a); background: linear-gradient(105deg,var(--h-green-soft),var(--h-surface) 82%); }
+    #level-challenge-h5 .challenge-card.is-failed { border-color: light-dark(#f0d8d9,#513439); background: linear-gradient(105deg,light-dark(#fff6f5,#2a2126),var(--h-surface) 82%); }
+    #level-challenge-h5 .challenge-card.is-applied { border-color: light-dark(#ddd9ff,#413b63); background: linear-gradient(105deg,var(--h-purple-soft),var(--h-surface) 82%); }
+    #level-challenge-h5 .challenge-summary { gap: 9px; min-width: 0; }
+    #level-challenge-h5 .seal { display: grid; width: 27px; height: 27px; flex: 0 0 27px; place-items: center; border-radius: 50%; color: #8c95a3; background: light-dark(#eef0f4,#303844); font-size: 16px; font-weight: 700; }
+    #level-challenge-h5 .seal.success { color: white; background: var(--h-green); box-shadow: 0 0 0 3px light-dark(#d6f1e3,#263e33); }
+    #level-challenge-h5 .seal.failed { color: #fff; background: #d97658; box-shadow: 0 0 0 3px light-dark(#fae9e2,#49312d); }
+    #level-challenge-h5 .seal.live { color: #fff; background: var(--h-purple); box-shadow: 0 0 0 3px light-dark(#e5e2ff,#393653); }
+    #level-challenge-h5 .challenge-copy { min-width: 0; flex: 1; }
+    #level-challenge-h5 .row-title-line { align-items: center; justify-content: flex-start; flex-wrap: wrap; gap: 6px; }
+    #level-challenge-h5 .challenge-name { min-width: 0; font-size: 16px; font-weight: 670; }
+    #level-challenge-h5 .detail-toggle { border: 0; padding: 2px 0; color: var(--h-purple); background: transparent; font-size: 14px; font-weight: 650; white-space: nowrap; cursor: pointer; }
+    #level-challenge-h5 .status-label { color: var(--h-muted); font-size: 14px; white-space: nowrap; }
+    #level-challenge-h5 .status-label { margin-left: auto; }
+    #level-challenge-h5 .status-label.good { color: var(--h-green); }
+    #level-challenge-h5 .status-label.fail { color: var(--h-red); }
+    #level-challenge-h5 .status-label.live { color: var(--h-purple); }
+    #level-challenge-h5 .row-meta { gap: 9px; margin-top: 5px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .row-meta strong { color: var(--h-text); font-size: 14px; font-weight: 630; }
+    #level-challenge-h5 .tap-button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 32px; flex: 0 0 auto;
+      padding: 0 10px; border: 1px solid var(--h-border); border-radius: 9px; color: var(--h-muted);
+      background: var(--h-soft); font-size: 14px; font-weight: 650; white-space: nowrap; cursor: pointer;
+      transition: background .16s ease, transform .16s ease;
+    }
+    #level-challenge-h5 .tap-button:hover { transform: translateY(-1px); }
+    #level-challenge-h5 .tap-button.primary { border-color: transparent; color: #fff; background: var(--h-purple); box-shadow: 0 4px 11px #7162ef30; }
+    #level-challenge-h5 .tap-button.claim { border-color: transparent; color: #fff; background: #12845b; }
+    #level-challenge-h5 .tap-button[disabled] { color: var(--h-muted); background: var(--h-soft); cursor: default; box-shadow: none; }
+    #level-challenge-h5 .challenge-details { margin: 12px 0 0 36px; padding-top: 11px; border-top: 1px solid var(--h-border); }
+    #level-challenge-h5 .challenge-details[hidden] { display: none; }
+    #level-challenge-h5 .attempt-label { margin-bottom: 9px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .progress-item + .progress-item { margin-top: 11px; }
+    #level-challenge-h5 .progress-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; font-size: 14px; }
+    #level-challenge-h5 .progress-head span { color: var(--h-muted); }
+    #level-challenge-h5 .progress-head strong { font-size: 14px; font-weight: 650; }
+    #level-challenge-h5 .progress-track { overflow: hidden; height: 6px; border-radius: 999px; background: light-dark(#e9ecf2,#303743); }
+    #level-challenge-h5 .progress-fill { height: 100%; border-radius: inherit; background: var(--h-purple); }
+    #level-challenge-h5 .progress-fill.secondary { background: #38ab80; }
+    #level-challenge-h5 .progress-amount { display: block; margin-top: 4px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .challenge-dates { justify-content: space-between; align-items: flex-start; gap: 8px; margin-top: 12px; padding: 9px 10px; border-radius: 9px; background: var(--h-soft); }
+    #level-challenge-h5 .challenge-dates div { min-width: 0; }
+    #level-challenge-h5 .challenge-dates small { display: block; margin-bottom: 4px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .challenge-dates strong { display: block; font-size: 14px; font-weight: 620; white-space: nowrap; }
+    #level-challenge-h5 .challenge-dates .deadline { color: var(--h-red); }
+    #level-challenge-h5 .details-note { margin-top: 11px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .rules-card { margin-top: 16px; padding: 14px; border: 1px solid var(--h-border); border-radius: 15px; background: var(--h-surface); }
+    #level-challenge-h5 .rules-card h2 { margin: 0 0 12px; font-size: 18px; font-weight: 700; }
+    #level-challenge-h5 .rules-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    #level-challenge-h5 .rules-list li { color: var(--h-muted); font-size: 14px; line-height: 1.55; }
+    #level-challenge-h5 .rules-list strong { color: var(--h-text); font-size: 14px; }
+    #level-challenge-h5 .rules-disclaimer { margin: 12px 0 0; padding-top: 10px; border-top: 1px solid var(--h-border); color: var(--h-muted); font-size: 14px; line-height: 1.55; }
+    #level-challenge-h5 .overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 14px; background: #070b13a8; backdrop-filter: blur(5px); }
+    #level-challenge-h5 .overlay[hidden] { display: none; }
+    #level-challenge-h5 .dialog { width: min(100%,420px); max-height: min(84vh,720px); overflow: auto; border: 1px solid var(--h-border); border-radius: 20px; color: var(--h-text); background: var(--h-surface); box-shadow: 0 24px 75px #05081055; }
+    #level-challenge-h5 .dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 18px 12px; }
+    #level-challenge-h5 .dialog-head small { display: block; margin-bottom: 5px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .dialog-head h2 { margin: 0; font-size: 18px; font-weight: 700; }
+    #level-challenge-h5 .modal-close { display: grid; width: 30px; height: 30px; flex: 0 0 30px; place-items: center; border: 1px solid var(--h-border); border-radius: 9px; color: var(--h-muted); background: var(--h-soft); font-size: 20px; cursor: pointer; }
+    #level-challenge-h5 .dialog-body { padding: 2px 18px 17px; }
+    #level-challenge-h5 .dialog-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 12px 18px 17px; border-top: 1px solid var(--h-border); }
+    #level-challenge-h5 .benefit-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid light-dark(#e8e4ff,#393651); border-radius: 13px; background: var(--h-purple-soft); }
+    #level-challenge-h5 .benefit-box small { display: block; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .benefit-box strong { display: block; margin-top: 5px; font-size: 21px; font-weight: 700; }
+    #level-challenge-h5 .benefit-box .benefit-time { margin-top: 6px; }
+    #level-challenge-h5 .benefit-box .benefit-time strong { display: inline; margin: 0; color: var(--h-red); font-size: 14px; font-weight: 750; }
+    #level-challenge-h5 .benefit-spark { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 12px; color: var(--h-purple); background: var(--h-surface); font-size: 21px; }
+    #level-challenge-h5 .modal-list { display: grid; gap: 10px; margin: 15px 0 0; padding: 0; list-style: none; }
+    #level-challenge-h5 .modal-list li { display: flex; align-items: flex-start; gap: 8px; color: var(--h-muted); font-size: 14px; line-height: 1.55; }
+    #level-challenge-h5 .check-dot { display: grid; width: 16px; height: 16px; flex: 0 0 16px; place-items: center; margin-top: 1px; border-radius: 50%; color: var(--h-purple); background: var(--h-purple-soft); font-size: 14px; font-weight: 700; }
+    #level-challenge-h5 .modal-note { margin-top: 12px; padding: 10px; border-radius: 9px; color: var(--h-muted); background: var(--h-soft); font-size: 14px; line-height: 1.5; }
+    #level-challenge-h5 .modal-button { min-height: 36px; padding: 0 12px; border: 1px solid var(--h-border); border-radius: 10px; color: var(--h-text); background: var(--h-surface); font-size: 14px; font-weight: 650; cursor: pointer; }
+    #level-challenge-h5 .modal-button.primary { border-color: transparent; color: #fff; background: var(--h-purple); }
+    #level-challenge-h5 .modal-button.success { border-color: transparent; color: #fff; background: #12845b; }
+    #level-challenge-h5 .success-state { display: grid; justify-items: center; padding: 5px 4px; text-align: center; }
+    #level-challenge-h5 .success-mark { display: grid; width: 58px; height: 58px; place-items: center; margin-bottom: 11px; border-radius: 50%; color: var(--h-green); background: var(--h-green-soft); font-size: 29px; }
+    #level-challenge-h5 .success-state strong { font-size: 17px; }
+    #level-challenge-h5 .success-state p { max-width: 290px; margin: 7px 0 0; color: var(--h-muted); font-size: 14px; line-height: 1.55; }
+    #level-challenge-h5 .wallet-preview { padding: 13px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-soft); }
+    #level-challenge-h5 .wallet-title { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; font-size: 16px; font-weight: 670; }
+    #level-challenge-h5 .fox { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 9px; background: #fff0d8; font-size: 19px; }
+    #level-challenge-h5 .wallet-line { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-top: 1px solid var(--h-border); color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .wallet-line strong { color: var(--h-text); font-weight: 620; text-align: right; }
+    #level-challenge-h5 .btc-quote-card, #level-challenge-h5 .btc-equivalent-card { display: grid; gap: 6px; margin-top: 12px; padding: 13px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-soft); }
+    #level-challenge-h5 .btc-quote-card small, #level-challenge-h5 .btc-equivalent-card small { color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .btc-quote-card strong { font-size: 17px; font-weight: 700; }
+    #level-challenge-h5 .btc-equivalent-card strong { color: var(--h-green); font-size: 22px; font-weight: 720; }
+    #level-challenge-h5 .btc-amount-highlight { color: var(--h-text); font-size: 16px; font-weight: 750; }
+    #level-challenge-h5 .btc-address-field { display: grid; gap: 7px; }
+    #level-challenge-h5 .btc-address-field label { font-size: 14px; font-weight: 650; }
+    #level-challenge-h5 .btc-address-input { width: 100%; min-height: 42px; padding: 0 11px; border: 1px solid var(--h-border); border-radius: 10px; color: var(--h-text); background: var(--h-surface); font: inherit; font-size: 14px; }
+    #level-challenge-h5 .btc-address-input:focus { border-color: var(--h-purple); outline: 3px solid #7162ef20; }
+    #level-challenge-h5 .btc-address-error { margin: -1px 0 0; color: var(--h-red); font-size: 14px; }
+    #level-challenge-h5 .btc-address-error:empty { display: none; }
+    #level-challenge-h5 .btc-address-warning { margin: 12px 0 0; color: var(--h-red); font-size: 14px; line-height: 1.55; }
+    #level-challenge-h5 .btc-footer { display: grid; grid-template-columns: 1fr; }
+    #level-challenge-h5 .btc-footer .modal-button { width: 100%; }
+    #level-challenge-h5 .modal-button:disabled { color: var(--h-muted); background: var(--h-soft); cursor: wait; }
+    #level-challenge-h5 .history-state { gap: 5px; color: var(--h-green); font-weight: 620; }
+    #level-challenge-h5 .history-state.pending { color: var(--h-amber); }
+    #level-challenge-h5 .history-state::before { width: 5px; height: 5px; border-radius: 50%; background: currentColor; content: ""; }
+    #level-challenge-h5 .history-panel { margin-top: 4px; padding: 14px; border: 1px solid var(--h-border); border-radius: 16px; background: var(--h-surface); }
+    #level-challenge-h5 .history-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+    #level-challenge-h5 .history-panel-head strong { font-size: 17px; font-weight: 680; }
+    #level-challenge-h5 .history-panel-head small { color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .history-list { display: grid; gap: 10px; }
+    #level-challenge-h5 .history-record { padding: 13px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-soft); }
+    #level-challenge-h5 .history-record-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    #level-challenge-h5 .history-record-type { min-width: 0; font-size: 15px; font-weight: 660; }
+    #level-challenge-h5 .history-record-meta { display: grid; gap: 10px; margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--h-border); }
+    #level-challenge-h5 .history-record-meta small { display: block; margin-bottom: 4px; color: var(--h-muted); font-size: 14px; }
+    #level-challenge-h5 .history-record-meta strong { display: block; font-size: 14px; font-weight: 620; }
+    #level-challenge-h5 .history-record-address { overflow-wrap: anywhere; word-break: break-all; line-height: 1.45; }
+    #level-challenge-h5 .history-empty { padding: 24px 12px; color: var(--h-muted); font-size: 14px; text-align: center; }
+    #level-challenge-h5 .toast { position: fixed; z-index: 1100; left: 50%; bottom: 22px; gap: 8px; max-width: calc(100vw - 28px); padding: 11px 14px; border: 1px solid var(--h-border); border-radius: 11px; color: var(--h-text); background: var(--h-surface); box-shadow: 0 10px 32px #070b1450; font-size: 14px; transform: translateX(-50%); }
+    #level-challenge-h5 .toast[hidden] { display: none; }
+    #level-challenge-h5 .toast-mark { color: var(--h-green); font-size: 18px; font-weight: 700; }
+    @media (max-width: 360px) {
+      #level-challenge-h5 { padding: 10px 6px; }
+      #level-challenge-h5 .screen { padding: 15px 12px 22px; }
+      #level-challenge-h5 .challenge-card { padding: 10px; }
+      #level-challenge-h5 .challenge-details { margin-left: 32px; }
+      #level-challenge-h5 .tap-button { padding: 0 8px; }
+      #level-challenge-h5 .challenge-dates strong { font-size: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #level-challenge-h5 .activity-entry, #level-challenge-h5 .tap-button { transition: none; }
+      #level-challenge-h5 .activity-entry:hover, #level-challenge-h5 .tap-button:hover { transform: none; }
+    }
+  </style>
+
+  <main class="phone-shell" aria-label="平台活动中心手机版原型">
+    <section class="screen" id="home-screen" aria-labelledby="home-title">
+      <header class="topline">
+        <div class="home-brand">
+          <span class="brand-mark" aria-hidden="true">↗</span>
+          <span class="brand-copy"><strong id="home-title">活动中心</strong><small>平台活动 · 成长奖励</small></span>
+        </div>
+        <span class="wallet-mini"><span class="wallet-dot" aria-hidden="true"></span>0x71C8…A92D</span>
+      </header>
+
+      <div class="section-heading"><strong>进行中的活动</strong><small id="ongoing-count">1 个活动</small></div>
+      <div class="activity-list" id="ongoing-activities">
+        <button class="activity-entry" id="open-challenge" type="button" aria-label="打开BOT巅峰挑战赛">
+          <div class="entry-art">
+            <span class="entry-chip"><span class="live-dot" aria-hidden="true"></span>活动进行中</span>
+            <div class="entry-art-title"><strong>BOT巅峰挑战赛</strong><span>最高 2 BTC</span></div>
+          </div>
+          <div class="entry-copy">
+            <div class="entry-heading"><span>BOT巅峰挑战赛</span><span class="entry-chevron" aria-hidden="true">›</span></div>
+            <p>在规定时间内完成VIP级别跃迁，即可领取最高2枚BTC的超级奖励</p>
+            <div class="entry-date"><span>活动时间</span><span>2026年11月1日</span><span>—</span><span>2027年2月28日</span></div>
+          </div>
+        </button>
+      </div>
+      <div class="section-heading ended-heading"><strong>已结束的活动</strong><small id="ended-count">0 个活动</small></div>
+      <div class="activity-list" id="ended-activities"></div>
+      <div class="empty-activity" id="ended-empty" hidden>暂无已结束的活动</div>
+    </section>
+
+    <section class="screen" id="detail-screen" aria-labelledby="detail-title" hidden>
+      <header class="mobile-nav">
+        <button class="nav-button" id="back-home" type="button" aria-label="返回活动中心">‹</button>
+        <div class="mobile-nav-title"><strong id="detail-title">BOT巅峰挑战赛</strong><button class="text-action" id="open-history" type="button">提取记录</button></div>
+      </header>
+
+      <section class="event-panel">
+        <div class="event-panel-top"><span class="event-status"><span class="live-dot" aria-hidden="true"></span>活动进行中</span></div>
+        <h1>BOT巅峰挑战赛</h1>
+        <p>活动时间：2026年11月1日 — 2027年2月28日</p>
+        <div class="event-bottom"><span>等级越级挑战</span><span>最高奖励 <strong>2 BTC</strong></span></div>
+      </section>
+
+      <section class="profile-card" aria-labelledby="profile-heading">
+        <div class="profile-card-head"><strong id="profile-heading">我的挑战数据</strong></div>
+        <div class="level-row"><small>等级</small><span class="level-orb">V3</span></div>
+        <div class="metric-grid">
+          <div class="metric"><small>个人业绩</small><strong>$999999.99</strong></div>
+          <div class="metric"><small>团队业绩</small><strong>$86,420</strong></div>
+          <div class="metric"><small>团队人数</small><strong>128 人</strong></div>
+          <div class="metric"><small>大区业绩</small><strong>$32,800</strong></div>
+          <div class="metric"><small>小区业绩</small><strong>$14,000</strong></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="challenge-list-title">
+        <div class="challenge-head"><strong id="challenge-list-title">等级挑战</strong><small></small></div>
+        <div class="challenge-list" id="challenge-list" aria-live="polite"></div>
+      </section>
+
+      <section class="rules-card" aria-labelledby="challenge-rules-title">
+        <h2 id="challenge-rules-title">BOT巅峰挑战赛规则</h2>
+        <ul class="rules-list">
+          <li><strong>活动周期：</strong>2026年11月1日-2027年2月28日，共120天，面向全球全体BOT会员开放。</li>
+          <li><strong>奖励总池：</strong>1000万USDT，挑战成功即可领取，全球万人共同参与挑战。</li>
+          <li><strong>报名方式：</strong>DAPP内即可申请参与挑战。</li>
+          <li><strong>多次挑战：</strong>活动有效期内完成一档晋升后，可继续报名挑战下一档级别。</li>
+          <li><strong>业绩统计：</strong>有效业绩包括BOT矿机销售业绩、BOT算力销售业绩，以及BOT360天及以上长期质押业绩。</li>
+        </ul>
+        <p class="rules-disclaimer">本方案为活动执行依据，未尽事宜及最终解释权归BOT Chain运营团队所有；平台保留根据市场情况进行规则微调的权利。</p>
+      </section>
+
+    </section>
+
+    <section class="screen" id="history-screen" aria-labelledby="history-title" hidden>
+      <header class="mobile-nav">
+        <button class="nav-button" id="history-back" type="button" aria-label="返回BOT巅峰挑战赛">‹</button>
+        <div class="mobile-nav-title"><strong id="history-title">提取记录</strong></div>
+      </header>
+      <section class="history-panel" aria-label="奖励提取记录">
+        <div class="history-panel-head"><strong>奖励提取记录</strong><small id="history-count"></small></div>
+        <div class="history-list" id="history-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <div class="overlay" id="overlay" hidden>
+    <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="dialog-head"><div><small id="modal-kicker">BOT巅峰挑战赛</small><h2 id="modal-title">详情</h2></div><button class="modal-close" id="modal-close" type="button" aria-label="关闭弹窗">×</button></header>
+      <div class="dialog-body" id="modal-body"></div>
+      <footer class="dialog-footer" id="modal-footer"></footer>
+    </section>
   </div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden><span class="toast-mark">✓</span><span id="toast-text"></span></div>
+
+  <script>
+    (function () {
+      const root = document.getElementById("level-challenge-h5");
+      if (!root) return;
+      const activities = [
+        { from: "普通用户 / V0", to: "V2", days: 15, reward: "600", unit: "USDT" },
+        { from: "V1", to: "V3", days: 20, reward: "1,000", unit: "USDT" },
+        { from: "V2", to: "V4", days: 30, reward: "2,000", unit: "USDT" },
+        { from: "V3", to: "V5", days: 40, reward: "4,000", unit: "USDT" },
+        { from: "V4", to: "V6", days: 50, reward: "8,000", unit: "USDT" },
+        { from: "V5", to: "V7", days: 60, reward: "16,000", unit: "USDT" },
+        { from: "V6", to: "V8", days: 70, reward: "0.5 BTC", unit: "或等值 USDT" },
+        { from: "V7", to: "V9", days: 80, reward: "1 BTC", unit: "或等值 USDT" },
+        { from: "V8", to: "V10", days: 90, reward: "2 BTC", unit: "或等值 USDT" }
+      ];
+      let reapplicationStarted = false;
+      let v4v6ApplicationStarted = false;
+      let v4v6AttemptStart = null;
+      let v4v6AttemptEnd = null;
+      const expandedDetails = { 3: false, 4: false };
+      let rewardClaimed = false;
+      let btcRewardClaimed = false;
+      let btcPriceSnapshot = null;
+      let btcPriceSnapshotPromise = null;
+      const btcSampleCompletedAt = new Date();
+      const btcUsdtAmount = 0.5;
+      let toastTimer = null;
+      let attemptStart = new Date("2026-09-30T16:22:31");
+      let attemptEnd = new Date("2026-11-09T16:22:31");
+      const evmPayoutAddress = "0x71C8F0A24B91D6E31A8F2C4D7B5E9A12C3D4E456";
+      const sampleBtcAddress = "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh";
+      const history = [
+        { type: "V2升级V4", reward: "2000USDT", currency: "BOTChain-USDT", address: evmPayoutAddress, time: "2026-11-10 16:22:31", status: "成功" },
+        { type: "V3升级V5", reward: "4000USDT", currency: "BOTChain-USDT", address: "0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530", time: "2026-11-11 16:22:31", status: "提币中" },
+        { type: "V6升级V8", reward: "0.5BTC", currency: "BTC", address: sampleBtcAddress, time: "2026-11-18 00:01:10", status: "提币中" }
+      ];
+      const homeScreen = root.querySelector("#home-screen");
+      const detailScreen = root.querySelector("#detail-screen");
+      const historyScreen = root.querySelector("#history-screen");
+      const challengeList = root.querySelector("#challenge-list");
+      const historyList = root.querySelector("#history-list");
+      const overlay = root.querySelector("#overlay");
+      const dialog = root.querySelector(".dialog");
+      const modalTitle = root.querySelector("#modal-title");
+      const modalKicker = root.querySelector("#modal-kicker");
+      const modalBody = root.querySelector("#modal-body");
+      const modalFooter = root.querySelector("#modal-footer");
+      const toast = root.querySelector("#toast");
+      const eventEndsAt = new Date("2027-02-28T23:59:59+08:00");
+      const activityEntry = root.querySelector("#open-challenge");
+      const ongoingActivities = root.querySelector("#ongoing-activities");
+      const endedActivities = root.querySelector("#ended-activities");
+      const endedEmpty = root.querySelector("#ended-empty");
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined && text !== null) node.textContent = text;
+        return node;
+      }
+      function btn(parent, label, className, handler) {
+        const node = el("button", "modal-button " + (className || ""), label);
+        node.type = "button";
+        node.addEventListener("click", handler);
+        parent.appendChild(node);
+        return node;
+      }
+      function tap(parent, label, className, handler) {
+        const node = el("button", "tap-button " + (className || ""), label);
+        node.type = "button";
+        node.addEventListener("click", handler);
+        parent.appendChild(node);
+        return node;
+      }
+      function renderActivityCenter() {
+        const ended = Date.now() > eventEndsAt.getTime();
+        if (ended) endedActivities.appendChild(activityEntry);
+        else ongoingActivities.appendChild(activityEntry);
+        root.querySelector("#ongoing-count").textContent = ended ? "0 个活动" : "1 个活动";
+        root.querySelector("#ended-count").textContent = ended ? "1 个活动" : "0 个活动";
+        endedEmpty.hidden = ended;
+        const entryChip = activityEntry.querySelector(".entry-chip");
+        entryChip.replaceChildren();
+        if (!ended) entryChip.appendChild(el("span", "live-dot"));
+        entryChip.appendChild(document.createTextNode(ended ? "活动已结束" : "活动进行中"));
+        const eventStatus = root.querySelector(".event-status");
+        eventStatus.replaceChildren();
+        if (!ended) eventStatus.appendChild(el("span", "live-dot"));
+        eventStatus.appendChild(document.createTextNode(ended ? "活动已结束" : "活动进行中"));
+      }
+      function loadBtcPriceSnapshot() {
+        if (btcPriceSnapshot) return Promise.resolve(btcPriceSnapshot);
+        if (btcPriceSnapshotPromise) return btcPriceSnapshotPromise;
+        btcPriceSnapshotPromise = fetch("https://data-api.binance.vision/api/v3/ticker/price?symbol=BTCUSDT", { cache: "no-store" })
+          .then(function (response) {
+            if (!response.ok) throw new Error("BTC 行情请求失败");
+            return response.json();
+          })
+          .then(function (quote) {
+            const price = Number(quote.price);
+            if (!Number.isFinite(price) || price <= 0) throw new Error("BTC 行情数据无效");
+            btcPriceSnapshot = { price: price, capturedAt: new Date(), completionAt: btcSampleCompletedAt };
+            return btcPriceSnapshot;
+          })
+          .catch(function () {
+            btcPriceSnapshotPromise = null;
+            return null;
+          });
+        return btcPriceSnapshotPromise;
+      }
+      function formatUsdt(value) {
+        return Number(value).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      function statusFor(index) {
+        if (index === 0) return "claimed";
+        if (index === 1) return rewardClaimed ? "claimed" : "complete";
+        if (index === 4) return v4v6ApplicationStarted ? "applied" : "available";
+        if (index === 3) return reapplicationStarted ? "applied" : "failed";
+        if (index === 6) return btcRewardClaimed ? "claimed" : "complete";
+        if (index === 7) return "ended";
+        return "locked";
+      }
+      function formatDate(date) {
+        const pad = function (value) { return String(value).padStart(2, "0"); };
+        return date.getFullYear() + "-" + pad(date.getMonth() + 1) + "-" + pad(date.getDate()) + " " + pad(date.getHours()) + ":" + pad(date.getMinutes()) + ":" + pad(date.getSeconds());
+      }
+      function renderProgress(label, amount, percentage, secondary) {
+        const item = el("div", "progress-item");
+        const head = el("div", "progress-head");
+        head.appendChild(el("span", "", label));
+        head.appendChild(el("strong", "", percentage + "%"));
+        item.appendChild(head);
+        const track = el("div", "progress-track");
+        track.setAttribute("role", "progressbar");
+        track.setAttribute("aria-label", label);
+        track.setAttribute("aria-valuenow", String(percentage));
+        track.setAttribute("aria-valuemin", "0");
+        track.setAttribute("aria-valuemax", "100");
+        const fill = el("div", "progress-fill" + (secondary ? " secondary" : ""));
+        fill.style.width = percentage + "%";
+        track.appendChild(fill);
+        item.appendChild(track);
+        item.appendChild(el("small", "progress-amount", amount));
+        return item;
+      }
+      function renderChallengeRows() {
+        challengeList.replaceChildren();
+        activities.forEach(function (challenge, index) {
+          const state = statusFor(index);
+          const card = el("article", "challenge-card");
+          if (state === "claimed" || state === "complete") card.classList.add("is-complete");
+          if (state === "available") card.classList.add("is-available");
+          if (state === "failed") card.classList.add("is-failed");
+          if (state === "applied") card.classList.add("is-applied");
+          const summary = el("div", "challenge-summary");
+          const seal = el("span", "seal", state === "claimed" || state === "complete" ? "✓" : state === "failed" ? "!" : state === "applied" ? "↗" : "•");
+          seal.setAttribute("aria-label", state === "claimed" || state === "complete" ? "挑战成功徽章" : state === "available" ? "可申请" : state === "failed" ? "未完成" : state === "applied" ? "挑战进行中" : "申请挑战");
+          if (state === "claimed" || state === "complete") seal.classList.add("success");
+          if (state === "failed") seal.classList.add("failed");
+          if (state === "applied") seal.classList.add("live");
+          summary.appendChild(seal);
+
+          const copy = el("div", "challenge-copy");
+          const titleLine = el("div", "row-title-line");
+          titleLine.appendChild(el("strong", "challenge-name", challenge.from + " → " + challenge.to));
+          const hasDetails = index === 3 || index === 4;
+          const detailsToggle = hasDetails ? el("button", "detail-toggle", expandedDetails[index] ? "收起" : "详情") : null;
+          if (detailsToggle) {
+            detailsToggle.type = "button";
+            detailsToggle.setAttribute("aria-expanded", String(Boolean(expandedDetails[index])));
+            detailsToggle.setAttribute("aria-controls", "challenge-details-" + index);
+            titleLine.appendChild(detailsToggle);
+          }
+          const stateText = state === "claimed" ? "挑战成功 · 已领取" : state === "complete" ? "挑战成功 · 待领取" : state === "available" ? "可申请" : state === "failed" ? "未完成" : state === "applied" ? "挑战进行中" : state === "ended" ? "活动已结束" : "申请挑战";
+          const stateClass = state === "claimed" || state === "complete" || state === "available" ? " good" : state === "failed" ? " fail" : state === "applied" ? " live" : "";
+          titleLine.appendChild(el("span", "status-label" + stateClass, stateText));
+          copy.appendChild(titleLine);
+          const meta = el("div", "row-meta");
+          meta.appendChild(el("span", "", challenge.days + " 天"));
+          meta.appendChild(el("span", "", "奖励"));
+          meta.appendChild(el("strong", "", challenge.reward + " " + challenge.unit));
+          copy.appendChild(meta);
+          summary.appendChild(copy);
+
+          if (index === 3 && state === "failed") {
+            const reapplyButton = tap(summary, "再次申请", "primary", function () { reapply(); });
+            if (Date.now() > eventEndsAt.getTime()) {
+              reapplyButton.disabled = true;
+              reapplyButton.textContent = "活动已结束";
+            }
+          } else if ((index === 3 || index === 4) && state === "applied") {
+            const underway = tap(summary, "挑战进行中", "", function () {});
+            underway.disabled = true;
+          } else if (state === "ended") {
+            const ended = tap(summary, "活动已结束", "", function () {});
+            ended.disabled = true;
+          } else if (state === "complete") {
+            tap(summary, "领取奖励", "claim", function () { openClaim(index); });
+          } else if (state === "claimed") {
+            tap(summary, "查看记录", "", function () { openHistory(); });
+          } else {
+            const apply = tap(summary, "申请挑战", state === "available" ? "primary" : "", function () { openBenefit(index); });
+            apply.setAttribute("aria-label", "查看" + challenge.from + "升级到" + challenge.to + "的挑战权益");
+          }
+          card.appendChild(summary);
+
+          if (hasDetails) {
+            const details = el("div", "challenge-details");
+            details.id = "challenge-details-" + index;
+            details.hidden = !expandedDetails[index];
+            if (detailsToggle) {
+              detailsToggle.addEventListener("click", function () {
+                expandedDetails[index] = !expandedDetails[index];
+                details.hidden = !expandedDetails[index];
+                detailsToggle.textContent = expandedDetails[index] ? "收起" : "详情";
+                detailsToggle.setAttribute("aria-expanded", String(expandedDetails[index]));
+              });
+            }
+            const isV3ToV5 = index === 3;
+            const isFailedSample = isV3ToV5 && state === "failed";
+            if (!isFailedSample) {
+              details.appendChild(el("div", "attempt-label", "本次挑战进度"));
+              details.appendChild(renderProgress("个人有效业绩", isV3ToV5 ? "$9,000 · 目标进度" : "$18,000 · 目标进度", isV3ToV5 ? 30 : 36, false));
+              details.appendChild(renderProgress("小区业绩", isV3ToV5 ? "$14,000 · 目标进度" : "$22,000 · 目标进度", isV3ToV5 ? 70 : 44, true));
+            }
+            if (isFailedSample || state === "applied") {
+              const dates = el("div", "challenge-dates");
+              const start = el("div", "");
+              start.appendChild(el("small", "", "开始时间"));
+              start.appendChild(el("strong", "", formatDate(isV3ToV5 ? attemptStart : v4v6AttemptStart)));
+              const end = el("div", "");
+              end.appendChild(el("small", "", "截止时间"));
+              end.appendChild(el("strong", "deadline", formatDate(isV3ToV5 ? attemptEnd : v4v6AttemptEnd)));
+              dates.appendChild(start);
+              dates.appendChild(end);
+              details.appendChild(dates);
+            } else if (index === 4) {
+              details.appendChild(el("p", "details-note", "确认申请后开始计时，挑战周期50天。"));
+            }
+            card.appendChild(details);
+          }
+          challengeList.appendChild(card);
+        });
+      }
+      function showScreen(which) {
+        if (which === "home") renderActivityCenter();
+        homeScreen.hidden = which !== "home";
+        detailScreen.hidden = which !== "detail";
+        historyScreen.hidden = which !== "history";
+        if (which === "detail") renderChallengeRows();
+        if (which === "history") renderHistory();
+        root.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      function openModal(title, kicker) {
+        modalTitle.textContent = title;
+        modalKicker.textContent = kicker || "BOT巅峰挑战赛";
+        modalBody.replaceChildren();
+        modalFooter.replaceChildren();
+        modalFooter.classList.remove("btc-footer");
+        overlay.hidden = false;
+        root.querySelector("#modal-close").focus();
+      }
+      function closeModal() { overlay.hidden = true; }
+      function benefitBox(parent, challenge) {
+        const box = el("div", "benefit-box");
+        const copy = el("div", "");
+        copy.appendChild(el("small", "", "挑战成功可获得"));
+        const rewardText = challenge.unit && !challenge.reward.includes(challenge.unit)
+          ? challenge.reward + " " + challenge.unit
+          : challenge.reward;
+        copy.appendChild(el("strong", "", rewardText));
+        const time = el("small", "benefit-time", "挑战时限 ");
+        time.appendChild(el("strong", "", challenge.days + "天"));
+        copy.appendChild(time);
+        box.appendChild(copy);
+        box.appendChild(el("span", "benefit-spark", "✦"));
+        parent.appendChild(box);
+      }
+      function addRule(parent, text) {
+        const row = el("li", "");
+        row.appendChild(el("span", "check-dot", "✓"));
+        row.appendChild(el("span", "", text));
+        parent.appendChild(row);
+      }
+      function openBenefit(index) {
+        const challenge = activities[index];
+        openModal(challenge.from + " → " + challenge.to + " 挑战权益", "BOT巅峰挑战赛奖励");
+        benefitBox(modalBody, challenge);
+        const list = el("ul", "modal-list");
+        addRule(list, "在挑战期限内完成目标等级升级，即视为挑战成功。");
+        addRule(list, "挑战成功后，可领取对应奖励；");
+        modalBody.appendChild(list);
+        if (index === 4) {
+          btn(modalFooter, "确认申请", "primary", function () {
+            v4v6ApplicationStarted = true;
+            v4v6AttemptStart = new Date();
+            v4v6AttemptEnd = new Date(v4v6AttemptStart.getTime() + 50 * 24 * 60 * 60 * 1000);
+            closeModal();
+            renderChallengeRows();
+            showToast("申请成功");
+          });
+        } else {
+          btn(modalFooter, "关闭", "", closeModal);
+        }
+      }
+      function openClaim(index) {
+        if (index === 6) {
+          openBtcClaim();
+          return;
+        }
+        const challenge = activities[index];
+        openModal("挑战奖励可领取", "挑战成功");
+        const success = el("div", "success-state");
+        success.appendChild(el("div", "success-mark", "✓"));
+        success.appendChild(el("strong", "", "恭喜，挑战成功！"));
+        success.appendChild(el("p", "", challenge.from + " 升级至 " + challenge.to + " 已达成，奖励 " + challenge.reward + " " + challenge.unit + " 可领取。"));
+        modalBody.appendChild(success);
+        btn(modalFooter, "稍后领取", "", closeModal);
+        btn(modalFooter, "确认领取", "success", function () { openWallet(index, null); });
+      }
+      function openBtcClaim() {
+        openModal("BTC 奖励可领取", "BTC 奖励 · 默认按 USDT 领取");
+        const success = el("div", "success-state");
+        success.appendChild(el("div", "success-mark", "✓"));
+        success.appendChild(el("strong", "", "恭喜，挑战成功！"));
+        const claimSummary = el("p", "");
+        claimSummary.appendChild(document.createTextNode("V6 升级至 V8 已达成，可领取 "));
+        claimSummary.appendChild(el("strong", "btc-amount-highlight", "0.5BTC"));
+        claimSummary.appendChild(document.createTextNode(" 或等值 USDT。"));
+        success.appendChild(claimSummary);
+        modalBody.appendChild(success);
+
+        const quoteCard = el("div", "btc-quote-card");
+        quoteCard.appendChild(el("small", "", "Binance BTC/USDT 价格"));
+        const rateValue = el("strong", "", "正在获取 BTC 行情…");
+        quoteCard.appendChild(rateValue);
+        const quoteTime = el("small", "", "价格快照将在挑战达成时记录");
+        quoteCard.appendChild(quoteTime);
+        modalBody.appendChild(quoteCard);
+
+        const amountCard = el("div", "btc-equivalent-card");
+        amountCard.appendChild(el("strong", "btc-amount-highlight", "可领取0.5BTC"));
+        amountCard.appendChild(el("small", "", "等值 USDT（保留 2 位小数）"));
+        const amountValue = el("strong", "", "— USDT");
+        amountCard.appendChild(amountValue);
+        modalBody.appendChild(amountCard);
+
+        modalFooter.classList.add("btc-footer");
+        const usdtButton = btn(modalFooter, "领取 USDT", "primary", function () {
+          if (!btcPriceSnapshot) return;
+          const amount = Number((btcPriceSnapshot.price * btcUsdtAmount).toFixed(2));
+          openWallet(6, { asset: "USDT", amount: amount });
+        });
+        usdtButton.disabled = true;
+        btn(modalFooter, "领取0.5BTC", "", openBtcAddressForm);
+
+        loadBtcPriceSnapshot().then(function (snapshot) {
+          if (!snapshot) {
+            rateValue.textContent = "BTC 行情暂不可用";
+            quoteTime.textContent = "请关闭弹窗后重新打开以获取最新价格";
+            return;
+          }
+          const usdt = Number((snapshot.price * btcUsdtAmount).toFixed(2));
+          rateValue.textContent = "1 BTC = " + formatUsdt(snapshot.price) + " USDT";
+          quoteTime.textContent = "Binance BTCUSDT · " + formatDate(snapshot.capturedAt);
+          amountValue.textContent = formatUsdt(usdt) + " USDT";
+          usdtButton.textContent = "领取 " + formatUsdt(usdt) + " USDT";
+          usdtButton.disabled = false;
+        });
+      }
+      function openBtcAddressForm() {
+        openModal("BTC领取申请", "填写 BTC 接收地址");
+        const field = el("div", "btc-address-field");
+        field.appendChild(el("label", "", "BTC 地址"));
+        const input = el("input", "btc-address-input");
+        input.type = "text";
+        input.autocomplete = "off";
+        input.spellcheck = false;
+        input.placeholder = "请输入正确的BTC地址";
+        input.setAttribute("aria-label", "BTC 接收地址");
+        field.appendChild(input);
+        const error = el("small", "btc-address-error", "");
+        field.appendChild(error);
+        modalBody.appendChild(field);
+        modalBody.appendChild(el("p", "btc-address-warning", "请填写正确的BTC接收地址，如果填写错误到账的资产损失，由用户自己承担"));
+        btn(modalFooter, "取消", "", closeModal);
+        btn(modalFooter, "确认", "primary", function () {
+          const address = input.value.trim();
+          const validAddress = /^(?:[13][a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[ac-hj-np-z02-9]{11,71})$/i.test(address);
+          if (!validAddress) {
+            error.textContent = "请输入正确的BTC接收地址";
+            input.focus();
+            return;
+          }
+          submitBtcClaim(address);
+        });
+        input.focus();
+      }
+      function submitBtcClaim(address) {
+        btcRewardClaimed = true;
+        const existingBtcRecord = history.find(function (record) { return record.type === "V6升级V8" && record.currency === "BTC"; });
+        if (existingBtcRecord) {
+          existingBtcRecord.address = address;
+          existingBtcRecord.time = formatDate(new Date());
+          existingBtcRecord.status = "提币中";
+        } else {
+          history.push({ type: "V6升级V8", reward: "0.5BTC", currency: "BTC", address: address, time: formatDate(new Date()), status: "提币中" });
+        }
+        renderChallengeRows();
+        openModal("BTC领取申请已提交", "奖励提取中");
+        const submitted = el("div", "success-state");
+        submitted.appendChild(el("div", "success-mark", "✓"));
+        submitted.appendChild(el("strong", "", "BTC领取申请已提交"));
+        submitted.appendChild(el("p", "", "BTC 稍后会打入您填写的地址，请注意查收。"));
+        submitted.appendChild(el("p", "", address));
+        modalBody.appendChild(submitted);
+        btn(modalFooter, "确认", "success", closeModal);
+      }
+      function openWallet(index, payout) {
+        const challenge = activities[index];
+        const asset = payout ? payout.asset : challenge.unit;
+        const rewardText = payout ? formatUsdt(payout.amount) + " " + payout.asset : challenge.reward + " " + challenge.unit;
+        openModal("确认提取奖励", "奖励提取");
+        const wallet = el("div", "wallet-preview");
+        [["操作", "领取挑战奖励"], ["奖励", rewardText], ["目标网络", "BOTChain"], ["收款钱包", evmPayoutAddress]].forEach(function (pair) {
+          const row = el("div", "wallet-line");
+          row.appendChild(el("span", "", pair[0]));
+          row.appendChild(el("strong", "", pair[1]));
+          wallet.appendChild(row);
+        });
+        modalBody.appendChild(wallet);
+        btn(modalFooter, "取消", "", closeModal);
+        btn(modalFooter, "确认提币", "primary", function () {
+          if (index === 1) rewardClaimed = true;
+          if (index === 6) btcRewardClaimed = true;
+          const fromLevel = (challenge.from.match(/V\d+/) || ["V0"])[0];
+          const historyReward = payout
+            ? formatUsdt(payout.amount).replace(/,/g, "") + payout.asset
+            : challenge.reward.replace(/[$,]/g, "") + asset;
+          history.push({
+            type: fromLevel + "升级" + challenge.to,
+            reward: historyReward,
+            currency: payout && payout.asset === "USDT" || challenge.unit === "USDT" ? "BOTChain-USDT" : "BTC",
+            address: evmPayoutAddress,
+            time: formatDate(new Date()),
+            status: "提币中"
+          });
+          closeModal();
+          renderChallengeRows();
+          showToast("提币请求已提交，可在提取记录查看状态");
+        });
+      }
+      function reapply() {
+        if (Date.now() > eventEndsAt.getTime()) {
+          showToast("活动已结束，无法再次申请");
+          return;
+        }
+        attemptStart = new Date();
+        attemptEnd = new Date(attemptStart.getTime() + 40 * 24 * 60 * 60 * 1000);
+        reapplicationStarted = true;
+        renderChallengeRows();
+        showToast("已重新申请，40 天挑战计时已开始");
+      }
+      function openHistory() {
+        showScreen("history");
+      }
+      function renderHistory() {
+        historyList.replaceChildren();
+        root.querySelector("#history-count").textContent = history.length + " 条记录";
+        if (!history.length) {
+          historyList.appendChild(el("div", "history-empty", "暂无提取记录"));
+          return;
+        }
+        history.forEach(function (record) {
+          const item = el("article", "history-record");
+          const head = el("div", "history-record-head");
+          head.appendChild(el("strong", "history-record-type", record.type));
+          head.appendChild(el("span", "history-state" + (record.status === "提币中" ? " pending" : ""), record.status));
+          item.appendChild(head);
+          const meta = el("div", "history-record-meta");
+          const reward = el("div", "");
+          reward.appendChild(el("small", "", "奖励数量"));
+          reward.appendChild(el("strong", "", record.reward));
+          meta.appendChild(reward);
+          const currency = el("div", "");
+          currency.appendChild(el("small", "", "币种"));
+          currency.appendChild(el("strong", "", record.currency));
+          meta.appendChild(currency);
+          const address = el("div", "");
+          address.appendChild(el("small", "", "提币地址"));
+          address.appendChild(el("strong", "history-record-address", record.address));
+          meta.appendChild(address);
+          const time = el("div", "");
+          time.appendChild(el("small", "", "提币时间"));
+          time.appendChild(el("strong", "", record.time));
+          meta.appendChild(time);
+          item.appendChild(meta);
+          historyList.appendChild(item);
+        });
+      }
+      function showToast(message) {
+        root.querySelector("#toast-text").textContent = message;
+        toast.hidden = false;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.hidden = true; }, 3400);
+      }
+
+      renderActivityCenter();
+      if (statusFor(6) === "complete") loadBtcPriceSnapshot();
+      root.querySelector("#open-challenge").addEventListener("click", function () { showScreen("detail"); });
+      root.querySelector("#back-home").addEventListener("click", function () { showScreen("home"); });
+      root.querySelector("#history-back").addEventListener("click", function () { showScreen("detail"); });
+      root.querySelector("#open-history").addEventListener("click", openHistory);
+      root.querySelector("#modal-close").addEventListener("click", closeModal);
+      overlay.addEventListener("click", function (event) { if (event.target === overlay) closeModal(); });
+      root.addEventListener("keydown", function (event) { if (event.key === "Escape" && !overlay.hidden) closeModal(); });
+    })();
+  </script>
+</div>
+
 </body>
 </html>
