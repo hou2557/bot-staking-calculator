@@ -600,8 +600,8 @@
             const isFailedSample = isV3ToV5 && state === "failed";
             if (!isFailedSample) {
               details.appendChild(el("div", "attempt-label", "本次挑战进度"));
-              details.appendChild(renderProgress("个人有效业绩", isV3ToV5 ? "$9,000 · 目标进度" : "$18,000 · 目标进度", isV3ToV5 ? 30 : 36, false));
-              details.appendChild(renderProgress("小区业绩", isV3ToV5 ? "$14,000 · 目标进度" : "$22,000 · 目标进度", isV3ToV5 ? 70 : 44, true));
+              details.appendChild(renderProgress("个人有效业绩", isV3ToV5 ? "$9,000 / $30,000" : "$18,000 / $50,000", isV3ToV5 ? 30 : 36, false));
+              details.appendChild(renderProgress("小区业绩", isV3ToV5 ? "$14,000 / $20,000" : "$22,000 / $50,000", isV3ToV5 ? 70 : 44, true));
             }
             if (isFailedSample || state === "applied") {
               const dates = el("div", "challenge-dates");
