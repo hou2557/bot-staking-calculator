@@ -217,6 +217,8 @@
     #level-challenge-h5 .benefit-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid light-dark(#e8e4ff,#393651); border-radius: 13px; background: var(--h-purple-soft); }
     #level-challenge-h5 .benefit-box small { display: block; color: var(--h-muted); font-size: 14px; }
     #level-challenge-h5 .benefit-box strong { display: block; margin-top: 5px; font-size: 21px; font-weight: 700; }
+    #level-challenge-h5 .benefit-box .benefit-time { margin-top: 6px; }
+    #level-challenge-h5 .benefit-box .benefit-time strong { display: inline; margin: 0; color: var(--h-red); font-size: 14px; font-weight: 750; }
     #level-challenge-h5 .benefit-spark { display: grid; width: 39px; height: 39px; place-items: center; border-radius: 12px; color: var(--h-purple); background: var(--h-surface); font-size: 21px; }
     #level-challenge-h5 .modal-list { display: grid; gap: 10px; margin: 15px 0 0; padding: 0; list-style: none; }
     #level-challenge-h5 .modal-list li { display: flex; align-items: flex-start; gap: 8px; color: var(--h-muted); font-size: 14px; line-height: 1.55; }
@@ -381,12 +383,12 @@
       const root = document.getElementById("level-challenge-h5");
       if (!root) return;
       const activities = [
-        { from: "普通用户 / V0", to: "V2", days: 15, reward: "$600", unit: "USDT" },
-        { from: "V1", to: "V3", days: 20, reward: "$1,000", unit: "USDT" },
-        { from: "V2", to: "V4", days: 30, reward: "$2,000", unit: "USDT" },
-        { from: "V3", to: "V5", days: 40, reward: "$4,000", unit: "USDT" },
-        { from: "V4", to: "V6", days: 50, reward: "$8,000", unit: "USDT" },
-        { from: "V5", to: "V7", days: 60, reward: "$16,000", unit: "USDT" },
+        { from: "普通用户 / V0", to: "V2", days: 15, reward: "600", unit: "USDT" },
+        { from: "V1", to: "V3", days: 20, reward: "1,000", unit: "USDT" },
+        { from: "V2", to: "V4", days: 30, reward: "2,000", unit: "USDT" },
+        { from: "V3", to: "V5", days: 40, reward: "4,000", unit: "USDT" },
+        { from: "V4", to: "V6", days: 50, reward: "8,000", unit: "USDT" },
+        { from: "V5", to: "V7", days: 60, reward: "16,000", unit: "USDT" },
         { from: "V6", to: "V8", days: 70, reward: "0.5 BTC", unit: "或等值 USDT" },
         { from: "V7", to: "V9", days: 80, reward: "1 BTC", unit: "或等值 USDT" },
         { from: "V8", to: "V10", days: 90, reward: "2 BTC", unit: "或等值 USDT" }
@@ -643,8 +645,13 @@
         const box = el("div", "benefit-box");
         const copy = el("div", "");
         copy.appendChild(el("small", "", "挑战成功可获得"));
-        copy.appendChild(el("strong", "", challenge.reward));
-        copy.appendChild(el("small", "", challenge.unit + " · 挑战时限 " + challenge.days + " 天"));
+        const rewardText = challenge.unit && !challenge.reward.includes(challenge.unit)
+          ? challenge.reward + " " + challenge.unit
+          : challenge.reward;
+        copy.appendChild(el("strong", "", rewardText));
+        const time = el("small", "benefit-time", "挑战时限 ");
+        time.appendChild(el("strong", "", challenge.days + "天"));
+        copy.appendChild(time);
         box.appendChild(copy);
         box.appendChild(el("span", "benefit-spark", "✦"));
         parent.appendChild(box);
@@ -661,7 +668,7 @@
         benefitBox(modalBody, challenge);
         const list = el("ul", "modal-list");
         addRule(list, "在挑战期限内完成目标等级升级，即视为挑战成功。");
-        addRule(list, "挑战成功后，可领取对应奖励；BTC 奖励可选择领取 BTC 或等值 USDT。");
+        addRule(list, "挑战成功后，可领取对应奖励；");
         modalBody.appendChild(list);
         if (index === 4) {
           btn(modalFooter, "确认申请", "primary", function () {
