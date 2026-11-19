@@ -124,8 +124,8 @@
     .mini-table { width:100%; border-collapse:collapse; text-align:left; }
     .mini-table th { padding:8px 5px; color:#9098a8; font-size:14px; font-weight:600; }
     .mini-table td { padding:9px 5px; border-top:1px solid #f0f1f5; font-size:14px; vertical-align:middle; }
-    .user-cell { display:flex; align-items:center; gap:8px; min-width:130px; }
-    .user-cell strong { display:block; font-size:14px; }
+    .user-cell { display:flex; align-items:center; gap:8px; min-width:220px; }
+    .user-cell strong { display:block; max-width:220px; font-size:14px; white-space:normal; overflow-wrap:anywhere; word-break:break-all; line-height:1.4; }
     .user-cell small { display:block; margin-top:2px; color:#979eac; font-size:14px; }
     .table-card { overflow:hidden; }
     .table-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 17px; border-bottom:1px solid var(--line); }
@@ -212,7 +212,7 @@
     @keyframes slidein { from { transform:translateX(18px); opacity:.5; } to { transform:translateX(0); opacity:1; } }
     .drawer-head,.modal-head { display:flex; align-items:flex-start; justify-content:space-between; gap:15px; margin-bottom:18px; }
     .drawer-head h2,.modal-head h2 { margin:0; font-size:17px; }
-    .drawer-head p,.modal-head p { margin:5px 0 0; color:var(--muted); font-size:14px; }
+    .drawer-head p,.modal-head p { max-width:calc(100% - 44px); margin:5px 0 0; color:var(--muted); font-size:14px; overflow-wrap:anywhere; word-break:break-all; line-height:1.45; }
     .close-button { display:grid; width:29px; height:29px; flex:0 0 29px; place-items:center; border:1px solid var(--line); border-radius:8px; color:#7d8697; background:white; font-size:18px; }
     .drawer-section { margin:16px 0; padding-bottom:15px; border-bottom:1px solid var(--line); }
     .drawer-section h3 { margin:0 0 11px; font-size:14px; }
@@ -314,7 +314,7 @@
           <article class="card campaign-card" data-campaign-state="ongoing">
             <div class="campaign-art"><span class="tag live">活动进行中</span><span class="campaign-art-mark">↗</span><strong>等级跃升挑战赛</strong><small>平台等级挑战赛 · 每次挑战跃升 2 级</small></div>
             <div class="campaign-body">
-              <div class="campaign-title-line"><div><h2>等级跃升挑战赛</h2><p>活动编号：ACT-2026-1101-01</p></div></div>
+              <div class="campaign-title-line"><div><h2>等级跃升挑战赛</h2></div></div>
               <div class="campaign-meta">
                 <div><small>活动时间</small><strong>2026-11-01 00:00 — 2027-02-28 23:59</strong></div>
                 <div><small>参与挑战</small><strong>386 人</strong></div>
@@ -327,14 +327,14 @@
           <article class="card campaign-card ended" data-campaign-state="ended">
             <div class="campaign-art ended-art"><span class="tag gray">已结束</span><span class="campaign-art-mark">✓</span><strong>夏季等级冲刺赛</strong><small>平台等级挑战赛 · 历史活动</small></div>
             <div class="campaign-body">
-              <div class="campaign-title-line"><div><h2>夏季等级冲刺赛</h2><p>活动编号：ACT-2026-0601-01</p></div></div>
+              <div class="campaign-title-line"><div><h2>夏季等级冲刺赛</h2></div></div>
               <div class="campaign-meta">
                 <div><small>活动时间</small><strong>2026-06-01 00:00 — 2026-08-31 23:59</strong></div>
                 <div><small>参与挑战</small><strong>214 人</strong></div>
                 <div><small>成功 / 失败</small><strong>133 / 68</strong></div>
                 <div><small>累计发放</small><strong>76,400 USDT</strong></div>
               </div>
-              <div class="campaign-footer"><span class="muted small-text">已归档 · 历史数据只读</span><div><button class="button small" data-campaign-detail="ended">查看详情</button></div></div>
+              <div class="campaign-footer"><span class="muted small-text">已归档 · 历史数据只读</span><div><button class="button small" data-goto="challenges" disabled>查看挑战</button><button class="button small" data-goto="parameters" disabled>查看规则配置</button></div></div>
             </div>
           </article>
         </div>
@@ -356,25 +356,25 @@
           </div>
           <div class="table-scroll">
             <table class="data-table">
-              <thead><tr><th>用户 / 钱包地址</th><th>挑战等级</th><th>奖励代币</th><th>申请时间</th><th>截止时间</th><th>个人有效业绩</th><th>小区/团队业绩</th><th>状态</th><th>操作</th></tr></thead>
+              <thead><tr><th>用户 / 钱包地址</th><th>挑战等级</th><th>奖励代币</th><th>申请时间</th><th>截止时间</th><th>个人有效业绩</th><th>小区业绩</th><th>状态</th><th>操作</th></tr></thead>
               <tbody id="challenge-rows">
-                <tr data-status="success" data-level="V6" data-search="0x71c8 v6 v8">
-                  <td><div class="user-cell"><span><strong>0x71C8…A92D</strong><small>当前等级 V6</small></span></div></td><td><strong>V6 → V8</strong></td><td>0.5 BTC</td><td>2026-10-28 10:12</td><td>2027-01-06 10:12</td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><span class="tag green">挑战成功</span></td><td><button class="button link row-detail" data-id="v6">查看</button></td>
+                <tr data-status="success" data-level="V6" data-search="0x71c8f0a24b91d6e31a8f2c4d7b5e9a12c3d4e456 v6 v8">
+                  <td><div class="user-cell"><span><strong>0x71C8F0A24B91D6E31A8F2C4D7B5E9A12C3D4E456</strong><small>当前等级 V6</small></span></div></td><td><strong>V6 → V8</strong></td><td>0.5 BTC</td><td>2026-10-28 10:12</td><td>2027-01-06 10:12</td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><span class="tag green">挑战成功</span></td><td><button class="button link row-detail" data-id="v6">查看</button></td>
                 </tr>
-                <tr data-status="failed" data-level="V3" data-search="0x82d4 v3 v5">
-                  <td><div class="user-cell"><span><strong>0x82D4…E71B</strong><small>当前等级 V3</small></span></div></td><td><strong>V3 → V5</strong></td><td>4,000 USDT</td><td>2026-09-30 16:22</td><td class="deadline">2026-11-09 16:22</td><td><strong>30%</strong><div class="progress-mini"><span style="width:30%"></span></div><small class="muted">9,000 / 30,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">14,000 / 20,000 USDT</small></td><td><span class="tag red">申请失败</span></td><td><button class="button link row-detail" data-id="v3">查看</button></td>
+                <tr data-status="failed" data-level="V3" data-search="0x82d4a19f37b6c8e20d5a3f41b7c96e8d24a01530 v3 v5">
+                  <td><div class="user-cell"><span><strong>0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530</strong><small>当前等级 V3</small></span></div></td><td><strong>V3 → V5</strong></td><td>4,000 USDT</td><td>2026-09-30 16:22</td><td class="deadline">2026-11-09 16:22</td><td><strong>30%</strong><div class="progress-mini"><span style="width:30%"></span></div><small class="muted">9,000 / 30,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">14,000 / 20,000 USDT</small></td><td><span class="tag red">申请失败</span></td><td><button class="button link row-detail" data-id="v3">查看</button></td>
                 </tr>
-                <tr data-status="processing" data-level="V2" data-search="0xaa19 v2 v4">
-                  <td><div class="user-cell"><span><strong>0xAA19…0C32</strong><small>当前等级 V2</small></span></div></td><td><strong>V2 → V4</strong></td><td>2,000 USDT</td><td>2026-11-10 09:08</td><td class="deadline">2026-12-10 09:08</td><td><strong>64%</strong><div class="progress-mini"><span style="width:64%"></span></div><small class="muted">9,600 / 15,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">10,500 / 15,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v2">查看</button></td>
+                <tr data-status="processing" data-level="V2" data-search="0xaa19c7e5f3028d64b1a9e73c4d6f08b25c1a0c32 v2 v4">
+                  <td><div class="user-cell"><span><strong>0xAA19C7E5F3028D64B1A9E73C4D6F08B25C1A0C32</strong><small>当前等级 V2</small></span></div></td><td><strong>V2 → V4</strong></td><td>2,000 USDT</td><td>2026-11-10 09:08</td><td class="deadline">2026-12-10 09:08</td><td><strong>64%</strong><div class="progress-mini"><span style="width:64%"></span></div><small class="muted">9,600 / 15,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">10,500 / 15,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v2">查看</button></td>
                 </tr>
-                <tr data-status="processing" data-level="V5" data-search="0xbe29 v5 v7">
-                  <td><div class="user-cell"><span><strong>0xBE29…C118</strong><small>当前等级 V5</small></span></div></td><td><strong>V5 → V7</strong></td><td>16,000 USDT</td><td>2026-11-07 14:06</td><td class="deadline">2027-01-06 14:06</td><td><strong>52%</strong><div class="progress-mini"><span style="width:52%"></span></div><small class="muted">31,200 / 60,000 USDT</small></td><td><strong>48%</strong><div class="progress-mini"><span style="width:48%"></span></div><small class="muted">24,000 / 50,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v5">查看</button></td>
+                <tr data-status="processing" data-level="V5" data-search="0xbe29f17c26d4a8935e0b71c64d2a09f37a55c118 v5 v7">
+                  <td><div class="user-cell"><span><strong>0xBE29F17C26D4A8935E0B71C64D2A09F37A55C118</strong><small>当前等级 V5</small></span></div></td><td><strong>V5 → V7</strong></td><td>16,000 USDT</td><td>2026-11-07 14:06</td><td class="deadline">2027-01-06 14:06</td><td><strong>52%</strong><div class="progress-mini"><span style="width:52%"></span></div><small class="muted">31,200 / 60,000 USDT</small></td><td><strong>48%</strong><div class="progress-mini"><span style="width:48%"></span></div><small class="muted">24,000 / 50,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v5">查看</button></td>
                 </tr>
-                <tr data-status="processing" data-level="V4" data-search="0xc11a v4 v6">
-                  <td><div class="user-cell"><span><strong>0xC11A…D541</strong><small>当前等级 V4</small></span></div></td><td><strong>V4 → V6</strong></td><td>8,000 USDT</td><td>2026-11-13 19:31</td><td class="deadline">2027-01-02 19:31</td><td><strong>36%</strong><div class="progress-mini"><span style="width:36%"></span></div><small class="muted">18,000 / 50,000 USDT</small></td><td><strong>44%</strong><div class="progress-mini"><span style="width:44%"></span></div><small class="muted">22,000 / 50,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v4">查看</button></td>
+                <tr data-status="processing" data-level="V4" data-search="0xc11a92b7e4d05a6c18f3b7e2c4a96d102f8bd541 v4 v6">
+                  <td><div class="user-cell"><span><strong>0xC11A92B7E4D05A6C18F3B7E2C4A96D102F8BD541</strong><small>当前等级 V4</small></span></div></td><td><strong>V4 → V6</strong></td><td>8,000 USDT</td><td>2026-11-13 19:31</td><td class="deadline">2027-01-02 19:31</td><td><strong>36%</strong><div class="progress-mini"><span style="width:36%"></span></div><small class="muted">18,000 / 50,000 USDT</small></td><td><strong>44%</strong><div class="progress-mini"><span style="width:44%"></span></div><small class="muted">22,000 / 50,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v4">查看</button></td>
                 </tr>
-                <tr data-status="success" data-level="V1" data-search="0xdd01 v1 v3">
-                  <td><div class="user-cell"><span><strong>0xDD01…A104</strong><small>当前等级 V1</small></span></div></td><td><strong>V1 → V3</strong></td><td>1,000 USDT</td><td>2026-11-11 11:12</td><td>2026-12-01 11:12</td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><span class="tag green">挑战成功</span></td><td><button class="button link row-detail" data-id="v1">查看</button></td>
+                <tr data-status="success" data-level="V1" data-search="0xdd017a2c3f96b84d5e10a2c79d31f608c4bea104 v1 v3">
+                  <td><div class="user-cell"><span><strong>0xDD017A2C3F96B84D5E10A2C79D31F608C4BEA104</strong><small>当前等级 V1</small></span></div></td><td><strong>V1 → V3</strong></td><td>1,000 USDT</td><td>2026-11-11 11:12</td><td>2026-12-01 11:12</td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><span class="tag green">挑战成功</span></td><td><button class="button link row-detail" data-id="v1">查看</button></td>
                 </tr>
               </tbody>
             </table>
@@ -458,7 +458,7 @@
     <section class="drawer-section"><h3>用户信息</h3><dl class="detail-list" id="drawer-user"></dl></section>
     <section class="drawer-section"><h3>挑战进度</h3><div id="drawer-progress"></div></section>
     <section class="drawer-section"><h3>挑战记录</h3><dl class="detail-list" id="drawer-record"></dl></section>
-    <footer class="drawer-actions"><button class="button" data-close-drawer>关闭</button><button class="button primary" id="drawer-action">查看提取记录</button></footer>
+    <footer class="drawer-actions"><button class="button" data-close-drawer>关闭</button></footer>
   </aside>
 </div>
 
@@ -521,12 +521,12 @@
   document.querySelector("#modal-overlay").addEventListener("click",function(event){if(event.target===this) closeModal();});
 
   const challengeDetails={
-    v6:{title:"V6 → V8 · 挑战成功",subtitle:"0x71C8…A92D · 申请时间 2026-10-28 10:12",user:[["用户等级","V6"],["团队业绩","$86,420"],["大区地址","0x71C8…A92D"],["大区业绩","$32,800"],["小区/团队业绩","$14,000"]],personal:100,community:100,start:"2026-10-28 10:12",deadline:"2027-01-06 10:12",status:"挑战成功",reward:"0.5 BTC 或等值 USDT"},
-    v3:{title:"V3 → V5 · 申请失败",subtitle:"0x82D4…E71B · 失败样例",user:[["用户等级","V3"],["团队业绩","$41,200"],["大区地址","0x82D4…E71B"],["大区业绩","$21,500"],["小区/团队业绩","$14,000"]],personal:30,community:70,start:"2026-09-30 16:22",deadline:"2026-11-09 16:22",status:"未达成目标",reward:"4,000 USDT"},
-    v2:{title:"V2 → V4 · 挑战进行中",subtitle:"0xAA19…0C32 · 申请时间 2026-11-10 09:08",user:[["用户等级","V2"],["团队业绩","$23,400"],["大区地址","0xAA19…0C32"],["大区业绩","$16,800"],["小区/团队业绩","$10,500"]],personal:64,community:70,start:"2026-11-10 09:08",deadline:"2026-12-10 09:08",status:"进行中",reward:"2,000 USDT"},
-    v5:{title:"V5 → V7 · 挑战进行中",subtitle:"0xBE29…C118 · 申请时间 2026-11-07 14:06",user:[["用户等级","V5"],["团队业绩","$62,100"],["大区地址","0xBE29…C118"],["大区业绩","$35,000"],["小区/团队业绩","$24,000"]],personal:52,community:48,start:"2026-11-07 14:06",deadline:"2027-01-06 14:06",status:"进行中",reward:"16,000 USDT"},
-    v4:{title:"V4 → V6 · 挑战进行中",subtitle:"0xC11A…D541 · 申请时间 2026-11-13 19:31",user:[["用户等级","V4"],["团队业绩","$34,000"],["大区地址","0xC11A…D541"],["大区业绩","$27,000"],["小区/团队业绩","$22,000"]],personal:36,community:44,start:"2026-11-13 19:31",deadline:"2027-01-02 19:31",status:"进行中",reward:"8,000 USDT"},
-    v1:{title:"V1 → V3 · 挑战成功",subtitle:"0xDD01…A104 · 申请时间 2026-11-11 11:12",user:[["用户等级","V1"],["团队业绩","$13,800"],["大区地址","0xDD01…A104"],["大区业绩","$9,200"],["小区/团队业绩","$7,500"]],personal:100,community:100,start:"2026-11-11 11:12",deadline:"2026-12-01 11:12",status:"挑战成功",reward:"1,000 USDT"}
+    v6:{title:"V6 → V8 · 挑战成功",subtitle:"0x71C8F0A24B91D6E31A8F2C4D7B5E9A12C3D4E456 · 申请时间 2026-10-28 10:12",user:[["用户等级","V6"],["团队业绩","$86,420"],["大区业绩","$32,800"],["小区业绩","$14,000"]],personal:100,community:100,start:"2026-10-28 10:12",deadline:"2027-01-06 10:12",status:"挑战成功",reward:"0.5 BTC 或等值 USDT"},
+    v3:{title:"V3 → V5 · 申请失败",subtitle:"0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530 · 失败样例",user:[["用户等级","V3"],["团队业绩","$41,200"],["大区业绩","$21,500"],["小区业绩","$14,000"]],personal:30,community:70,start:"2026-09-30 16:22",deadline:"2026-11-09 16:22",status:"未达成目标",reward:"4,000 USDT"},
+    v2:{title:"V2 → V4 · 挑战进行中",subtitle:"0xAA19C7E5F3028D64B1A9E73C4D6F08B25C1A0C32 · 申请时间 2026-11-10 09:08",user:[["用户等级","V2"],["团队业绩","$23,400"],["大区业绩","$16,800"],["小区业绩","$10,500"]],personal:64,community:70,start:"2026-11-10 09:08",deadline:"2026-12-10 09:08",status:"进行中",reward:"2,000 USDT"},
+    v5:{title:"V5 → V7 · 挑战进行中",subtitle:"0xBE29F17C26D4A8935E0B71C64D2A09F37A55C118 · 申请时间 2026-11-07 14:06",user:[["用户等级","V5"],["团队业绩","$62,100"],["大区业绩","$35,000"],["小区业绩","$24,000"]],personal:52,community:48,start:"2026-11-07 14:06",deadline:"2027-01-06 14:06",status:"进行中",reward:"16,000 USDT"},
+    v4:{title:"V4 → V6 · 挑战进行中",subtitle:"0xC11A92B7E4D05A6C18F3B7E2C4A96D102F8BD541 · 申请时间 2026-11-13 19:31",user:[["用户等级","V4"],["团队业绩","$34,000"],["大区业绩","$27,000"],["小区业绩","$22,000"]],personal:36,community:44,start:"2026-11-13 19:31",deadline:"2027-01-02 19:31",status:"进行中",reward:"8,000 USDT"},
+    v1:{title:"V1 → V3 · 挑战成功",subtitle:"0xDD017A2C3F96B84D5E10A2C79D31F608C4BEA104 · 申请时间 2026-11-11 11:12",user:[["用户等级","V1"],["团队业绩","$13,800"],["大区业绩","$9,200"],["小区业绩","$7,500"]],personal:100,community:100,start:"2026-11-11 11:12",deadline:"2026-12-01 11:12",status:"挑战成功",reward:"1,000 USDT"}
   };
   function fillDl(target,items){
     const dl=document.querySelector(target); dl.replaceChildren();
@@ -550,9 +550,8 @@
       document.querySelector("#drawer-subtitle").textContent=data.subtitle;
       fillDl("#drawer-user",data.user);
       const progress=document.querySelector("#drawer-progress"); progress.replaceChildren();
-      progress.append(progressMarkup("个人有效业绩",data.personal,data.personal===100?"已达目标":"目标进度"),progressMarkup("小区/团队业绩",data.community,data.community===100?"已达目标":"目标进度"));
+      progress.append(progressMarkup("个人有效业绩",data.personal,data.personal===100?"已达目标":"目标进度"),progressMarkup("小区业绩",data.community,data.community===100?"已达目标":"目标进度"));
       fillDl("#drawer-record",[["挑战状态",data.status],["开始时间",data.start],["截止时间",data.deadline],["奖励标准",data.reward]]);
-      document.querySelector("#drawer-action").onclick=function(){document.querySelector("#drawer-overlay").classList.remove("open");navigate("withdrawals");};
       document.querySelector("#drawer-overlay").classList.add("open");
     });
   });
@@ -578,8 +577,6 @@
   const withdrawalRows=Array.from(document.querySelectorAll("#withdraw-rows tr"));
   function applyWithdrawalFilters(){document.querySelector("#withdraw-count").textContent=filterTable(withdrawalRows,document.querySelector("#withdraw-search").value,"all");}
   document.querySelector("#withdraw-search").addEventListener("input",applyWithdrawalFilters);
-
-  document.querySelectorAll("[data-campaign-detail]").forEach(function(button){button.addEventListener("click",function(){openModal("历史活动详情","夏季等级冲刺赛 · ACT-2026-0601-01","该活动已于 2026-08-31 结束并归档。历史挑战、奖励和提取记录保持可查询。",[{label:"关闭"}]);});});
 
   const configInputs=Array.from(document.querySelectorAll("[data-config]"));
   configInputs.forEach(function(input){
