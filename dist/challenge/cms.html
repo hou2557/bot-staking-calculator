@@ -149,6 +149,7 @@
     .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px 16px; }
     .field label { display:block; margin-bottom:6px; color:#616b7c; font-size:14px; font-weight:650; }
     .field input,.field select,.field textarea { width:100%; min-height:35px; padding:0 10px; border:1px solid #e4e7ee; border-radius:8px; outline:0; color:#374154; background:#fff; font-size:14px; }
+    .field .static-value { display:flex; align-items:center; width:100%; min-height:35px; padding:0 10px; border:1px solid #e4e7ee; border-radius:8px; color:#374154; background:#f7f8fb; font-size:14px; }
     .field input:focus,.field select:focus,.field textarea:focus { border-color:#9f95ff; box-shadow:0 0 0 3px #7162ef16; }
     .field .help { display:block; margin-top:5px; color:#9ba2b0; font-size:14px; line-height:1.4; }
     .field.full { grid-column:1/-1; }
@@ -349,7 +350,7 @@
           <div class="table-toolbar">
             <div class="toolbar-left">
               <label class="search-box"><span>⌕</span><input id="challenge-search" type="search" placeholder="搜索钱包地址或挑战等级"></label>
-              <select class="select" id="challenge-filter"><option value="all">全部状态</option><option value="processing">进行中</option><option value="success">挑战成功</option><option value="failed">申请失败</option></select>
+              <select class="select" id="challenge-filter"><option value="all">全部状态</option><option value="processing">进行中</option><option value="success">挑战成功</option><option value="failed">未完成</option></select>
               <select class="select" id="challenge-level-filter"><option value="all">全部用户等级</option><option value="V0">普通用户 / V0</option><option value="V1">V1</option><option value="V2">V2</option><option value="V3">V3</option><option value="V4">V4</option><option value="V5">V5</option><option value="V6">V6</option><option value="V7">V7</option><option value="V8">V8</option><option value="V9">V9</option><option value="V10">V10</option></select>
             </div>
             <div class="toolbar-right"><span class="muted small-text">共 <b id="challenge-count">6</b> 条记录</span></div>
@@ -362,7 +363,7 @@
                   <td><div class="user-cell"><span><strong>0x71C8F0A24B91D6E31A8F2C4D7B5E9A12C3D4E456</strong><small>当前等级 V6</small></span></div></td><td><strong>V6 → V8</strong></td><td>0.5 BTC</td><td>2026-10-28 10:12</td><td>2027-01-06 10:12</td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><strong>100%</strong><div class="progress-mini"><span style="width:100%"></span></div></td><td><span class="tag green">挑战成功</span></td><td><button class="button link row-detail" data-id="v6">查看</button></td>
                 </tr>
                 <tr data-status="failed" data-level="V3" data-search="0x82d4a19f37b6c8e20d5a3f41b7c96e8d24a01530 v3 v5">
-                  <td><div class="user-cell"><span><strong>0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530</strong><small>当前等级 V3</small></span></div></td><td><strong>V3 → V5</strong></td><td>4,000 USDT</td><td>2026-09-30 16:22</td><td class="deadline">2026-11-09 16:22</td><td><strong>30%</strong><div class="progress-mini"><span style="width:30%"></span></div><small class="muted">9,000 / 30,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">14,000 / 20,000 USDT</small></td><td><span class="tag red">申请失败</span></td><td><button class="button link row-detail" data-id="v3">查看</button></td>
+                  <td><div class="user-cell"><span><strong>0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530</strong><small>当前等级 V3</small></span></div></td><td><strong>V3 → V5</strong></td><td>4,000 USDT</td><td>2026-09-30 16:22</td><td class="deadline">2026-11-09 16:22</td><td><strong>30%</strong><div class="progress-mini"><span style="width:30%"></span></div><small class="muted">9,000 / 30,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">14,000 / 20,000 USDT</small></td><td><span class="tag red">未完成</span></td><td><button class="button link row-detail" data-id="v3">查看</button></td>
                 </tr>
                 <tr data-status="processing" data-level="V2" data-search="0xaa19c7e5f3028d64b1a9e73c4d6f08b25c1a0c32 v2 v4">
                   <td><div class="user-cell"><span><strong>0xAA19C7E5F3028D64B1A9E73C4D6F08B25C1A0C32</strong><small>当前等级 V2</small></span></div></td><td><strong>V2 → V4</strong></td><td>2,000 USDT</td><td>2026-11-10 09:08</td><td class="deadline">2026-12-10 09:08</td><td><strong>64%</strong><div class="progress-mini"><span style="width:64%"></span></div><small class="muted">9,600 / 15,000 USDT</small></td><td><strong>70%</strong><div class="progress-mini"><span style="width:70%"></span></div><small class="muted">10,500 / 15,000 USDT</small></td><td><span class="tag amber">进行中</span></td><td><button class="button link row-detail" data-id="v2">查看</button></td>
@@ -422,8 +423,8 @@
             <div class="form-grid section-gap">
               <div class="field"><label for="cfg-start">活动开始时间</label><input id="cfg-start" data-config="start" type="datetime-local" value="2026-11-01T00:00"></div>
               <div class="field"><label for="cfg-end">活动截止时间</label><input id="cfg-end" data-config="end" type="datetime-local" value="2027-02-28T23:59"></div>
-              <div class="field"><label for="cfg-status">活动状态</label><select id="cfg-status" data-config="status"><option>进行中</option><option>未开始</option><option>已结束</option><option>暂停报名</option></select></div>
-              <div class="field"><label for="cfg-timezone">活动时区</label><select id="cfg-timezone" data-config="timezone"><option>UTC+08:00 北京时间</option><option>UTC</option></select></div>
+              <div class="field"><label>活动状态</label><div class="static-value">进行中</div></div>
+              <div class="field"><label>活动时区</label><div class="static-value">UTC+8:00</div></div>
             </div>
           </article>
         </div>
@@ -522,7 +523,7 @@
 
   const challengeDetails={
     v6:{title:"V6 → V8 · 挑战成功",subtitle:"0x71C8F0A24B91D6E31A8F2C4D7B5E9A12C3D4E456 · 申请时间 2026-10-28 10:12",user:[["用户等级","V6"],["团队业绩","$86,420"],["大区业绩","$32,800"],["小区业绩","$14,000"]],personal:100,community:100,start:"2026-10-28 10:12",deadline:"2027-01-06 10:12",status:"挑战成功",reward:"0.5 BTC 或等值 USDT"},
-    v3:{title:"V3 → V5 · 申请失败",subtitle:"0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530 · 失败样例",user:[["用户等级","V3"],["团队业绩","$41,200"],["大区业绩","$21,500"],["小区业绩","$14,000"]],personal:30,community:70,start:"2026-09-30 16:22",deadline:"2026-11-09 16:22",status:"未达成目标",reward:"4,000 USDT"},
+    v3:{title:"V3 → V5 · 未完成",subtitle:"0x82D4A19F37B6C8E20D5A3F41B7C96E8D24A01530 · 失败样例",user:[["用户等级","V3"],["团队业绩","$41,200"],["大区业绩","$21,500"],["小区业绩","$14,000"]],personal:30,community:70,start:"2026-09-30 16:22",deadline:"2026-11-09 16:22",status:"未完成",reward:"4,000 USDT"},
     v2:{title:"V2 → V4 · 挑战进行中",subtitle:"0xAA19C7E5F3028D64B1A9E73C4D6F08B25C1A0C32 · 申请时间 2026-11-10 09:08",user:[["用户等级","V2"],["团队业绩","$23,400"],["大区业绩","$16,800"],["小区业绩","$10,500"]],personal:64,community:70,start:"2026-11-10 09:08",deadline:"2026-12-10 09:08",status:"进行中",reward:"2,000 USDT"},
     v5:{title:"V5 → V7 · 挑战进行中",subtitle:"0xBE29F17C26D4A8935E0B71C64D2A09F37A55C118 · 申请时间 2026-11-07 14:06",user:[["用户等级","V5"],["团队业绩","$62,100"],["大区业绩","$35,000"],["小区业绩","$24,000"]],personal:52,community:48,start:"2026-11-07 14:06",deadline:"2027-01-06 14:06",status:"进行中",reward:"16,000 USDT"},
     v4:{title:"V4 → V6 · 挑战进行中",subtitle:"0xC11A92B7E4D05A6C18F3B7E2C4A96D102F8BD541 · 申请时间 2026-11-13 19:31",user:[["用户等级","V4"],["团队业绩","$34,000"],["大区业绩","$27,000"],["小区业绩","$22,000"]],personal:36,community:44,start:"2026-11-13 19:31",deadline:"2027-01-02 19:31",status:"进行中",reward:"8,000 USDT"},
